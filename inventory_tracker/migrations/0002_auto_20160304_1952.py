@@ -28,11 +28,22 @@ class Migration(migrations.Migration):
             field=models.DateField(default=datetime.datetime(2016, 3, 4, 19, 52, 52, 499734, tzinfo=utc)),
             preserve_default=False,
         ),
-        migrations.AlterField(
-            model_name='claim',
-            name='claim_paid',
-            field=models.BooleanField(),
-        ),
+#        migrations.AlterField(
+#            model_name='claim',
+#            name='claim_paid',
+#            field=models.BooleanField(),
+#        ),
+
+	migrations.RemoveField(
+		model_name='claim',
+		name='claim_paid',
+	),
+	migrations.AddField(
+		model_name='claim',
+		name='claim_paid',
+		field=models.BooleanField(),
+	),
+
         migrations.AlterField(
             model_name='claim',
             name='submitted_date',
