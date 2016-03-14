@@ -106,3 +106,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Production settings are kept in a separate file, settings_production.py
+# which overrides db, email, secret key, etc with production values
+try:
+    from settings_production import *
+except ImportError:
+    pass
