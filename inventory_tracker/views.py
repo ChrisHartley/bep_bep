@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.views.generic.edit import FormView
+from django.contrib.messages.views import SuccessMessageMixin
+from .models import photo, Property, claim, status
+from .forms import PropertyFieldworkForm
 
-# Create your views here.
+class PropertyView(SuccessMessageMixin, FormView):
+    template_name = 'photo_form.html'
+    form_class = PropertyFieldworkForm
+    success_url = '/'
+    success_message = "%(prop)s image created successfully"

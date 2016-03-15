@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Property(models.Model):
 
@@ -106,3 +107,12 @@ class status(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.get_state_display(), self.note)
+
+def get_location(instance, filename):
+    return '{0}/{1}'.format(slugify(instance.property), filename)
+
+class photo(models.Model):
+    description = models.CharField(max_length=1024, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    prop = models.ForeignKey(Property, related_name='photo')
+    image = models.ImageField(upload_to=get_location)
