@@ -8,5 +8,5 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.PropertyView.as_view())
+    url(r'^$', views.PropertyView.as_view(), name='fieldwork')
 ]

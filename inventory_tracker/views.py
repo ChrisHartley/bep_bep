@@ -8,4 +8,9 @@ class PropertyView(SuccessMessageMixin, FormView):
     template_name = 'photo_form.html'
     form_class = PropertyFieldworkForm
     success_url = '/'
-    success_message = "%(prop)s image created successfully"
+    success_message = "%(prop)s image saved."
+
+    def form_valid(self, form):
+        print self.request.FILES
+        form.save()
+        return super(PropertyView, self).form_valid(form)

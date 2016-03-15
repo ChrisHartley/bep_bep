@@ -64,7 +64,6 @@ class claim(models.Model):
     claim_paid = models.BooleanField(default=False)
     claim_paid_date = models.DateField(blank=True, null=True)
     description = models.CharField(max_length=255, blank=False)
-    #document_or_confirmation_number_or_something
     amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     claim_confirmation_number = models.CharField(max_length=25, blank=True)
     prop = models.ForeignKey(Property)
@@ -109,7 +108,7 @@ class status(models.Model):
         return '%s - %s' % (self.get_state_display(), self.note)
 
 def get_location(instance, filename):
-    return '{0}/{1}'.format(slugify(instance.property), filename)
+    return '{0}/{1}/{2}'.format('photos',slugify(instance.prop), filename)
 
 class photo(models.Model):
     description = models.CharField(max_length=1024, blank=True)
