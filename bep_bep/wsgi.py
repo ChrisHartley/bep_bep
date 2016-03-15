@@ -32,6 +32,6 @@ except ImportError:
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ("DJANGO_SETTINGS_MODULE", "bep_bep.settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "bep_bep.settings")
 
 application = get_wsgi_application()
