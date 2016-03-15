@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from .models import Property, claim, status
+from .models import Property, claim, status, photo
 
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
@@ -102,3 +102,4 @@ class PropertyAdmin(admin.ModelAdmin):
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(claim)
 admin.site.register(status)
+admin.site.register(photo)
