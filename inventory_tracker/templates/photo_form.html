@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 {% block center %}
 {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+<div class="panel panel-info">
+  <div class="panel-body">
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 
-<form enctype="multipart/form-data" action="/" method="post">
-    {% csrf_token %}
-     <p>{{ form.non_field_errors }}</p>
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+{% endif %}
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-title">BEP Field Survey</div>
+  </div>
+  <div class="panel-body">
+    <form enctype="multipart/form-data" action="/" method="post">
+        {% csrf_token %}
+         <p>{{ form.non_field_errors }}</p>
+        {{ form }}
+        <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
 
 
 {% endblock center %}

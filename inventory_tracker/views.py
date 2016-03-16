@@ -11,6 +11,5 @@ class PropertyView(SuccessMessageMixin, FormView):
     success_message = "%(prop)s image saved."
 
     def form_valid(self, form):
-        print self.request.FILES
         form.save()
         return super(PropertyView, self).form_valid(form)
