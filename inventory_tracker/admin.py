@@ -100,8 +100,9 @@ class PropertyAdmin(admin.ModelAdmin):
             return status.objects.filter(prop=obj).latest('timestamp')
 
 class PhotoAdmin(admin.ModelAdmin):
-    fields = ( 'prop', ('image', 'image_thumb'), 'description', 'timestamp')
-    readonly_fields = ('image_thumb',)
+
+    fields = ( 'prop', ('image', 'image_thumb'), 'description','timestamp')
+    readonly_fields = ('image_thumb','timestamp')
 
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(claim)

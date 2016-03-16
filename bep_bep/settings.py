@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
     'inventory_tracker',
 )
 
@@ -100,6 +101,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# used by easy_thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+        'small': {'size': (100, 100), 'crop': False},
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
