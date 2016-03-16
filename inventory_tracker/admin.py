@@ -99,7 +99,11 @@ class PropertyAdmin(admin.ModelAdmin):
     def get_current_status(self, obj):
             return status.objects.filter(prop=obj).latest('timestamp')
 
+class PhotoAdmin(admin.ModelAdmin):
+    fields = ( 'prop', ('image', 'image_thumb'), 'description', 'timestamp')
+    readonly_fields = ('image_thumb',)
+
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(claim)
 admin.site.register(status)
-admin.site.register(photo)
+admin.site.register(photo, PhotoAdmin)

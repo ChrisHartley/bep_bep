@@ -115,3 +115,6 @@ class photo(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     prop = models.ForeignKey(Property, related_name='photo')
     image = models.ImageField(upload_to=get_location)
+    def image_thumb(self):
+        return '<img src="/media/%s" width="100" height="100" />' % (self.image)
+    image_thumb.allow_tags = True
