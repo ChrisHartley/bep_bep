@@ -100,7 +100,7 @@ class PropertyAdmin(admin.ModelAdmin):
             return status.objects.filter(prop=obj).latest('timestamp')
 
 class PhotoAdmin(admin.ModelAdmin):
-
+    list_display = ('prop','description','image_thumb','timestamp')
     fields = ( 'prop', ('image', 'image_thumb'), 'description','timestamp')
     readonly_fields = ('image_thumb','timestamp')
 
