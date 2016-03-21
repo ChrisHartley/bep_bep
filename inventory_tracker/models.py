@@ -9,6 +9,7 @@ class Property(models.Model):
     site_control = models.BooleanField(default=False)
 
     originally_renew_owned = models.BooleanField(default=False)
+    originally_city_owned = models.BooleanField(default=False)
     originally_county_surplus = models.BooleanField(default=False)
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
@@ -17,6 +18,7 @@ class Property(models.Model):
     public_notice_date = models.DateField(blank=True, null=True)
 
     landmarks_clearance_date = models.DateField(blank=True, null=True)
+
 
     preinspection_complete = models.BooleanField(default=False)
     preinspection_date = models.DateField(blank=True, null=True)
