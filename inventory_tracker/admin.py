@@ -38,6 +38,11 @@ class PropertyAdmin(admin.ModelAdmin):
                 )
             }
         ),
+        ('Scoring Matrix', {
+            'fields': ('scoring_matrix_complete',),
+
+            }
+        ),
         ('Public Notice', {
             'fields': (
                 ('public_notice_complete','public_notice_date'),

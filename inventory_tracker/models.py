@@ -14,6 +14,8 @@ class Property(models.Model):
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
 
+    scoring_matrix_complete = models.BooleanField(default=False)
+
     public_notice_complete = models.BooleanField(default=False)
     public_notice_date = models.DateField(blank=True, null=True)
 
