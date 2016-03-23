@@ -1,6 +1,22 @@
 from django.db import models
 from django.utils.text import slugify
 
+class Bidder(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    contact = models.CharField(max_length=255, blank=False)
+    email = models.CharField(max_length=255, blank=False)
+    email2 = models.CharField(max_length=255, blank=True)
+    phone = models.CharField(max_length=255, blank=False)
+    mailing_address_1 = models.CharField(max_length=255, blank=True)
+    mailing_address_2 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    zipcode = models.CharField(max_length=255, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Property(models.Model):
 
     parcel = models.CharField(max_length=7)
@@ -32,6 +48,7 @@ class Property(models.Model):
     bid_date = models.DateField(blank=True, null=True)
     bid_group = models.CharField(max_length=25, blank=True)
 
+    bidder_awarded = models.ForeignKey(Bidder, null=True, blank=True)
     contract_winner = models.CharField(max_length=255, blank=True)
     contract_date = models.DateField(blank=True, null=True)
 
