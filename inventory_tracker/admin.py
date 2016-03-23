@@ -54,7 +54,8 @@ class PropertyAdmin(admin.ModelAdmin):
                 (
                     'landmarks_clearance_date',
                     ('preinspection_complete','preinspection_date'),
-                    ('environmental_report_complete','environmental_report_submitted','environmental_report_received')
+                    ('environmental_report_complete','environmental_report_received'),
+                    ('abatement_required', 'abatement_complete')
                 )
             }
         ),

@@ -41,9 +41,11 @@ class Property(models.Model):
     preinspection_complete = models.BooleanField(default=False)
     preinspection_date = models.DateField(blank=True, null=True)
 
-    environmental_report_submitted = models.DateField(blank=True, null=True)
+    #environmental_report_submitted = models.DateField(blank=True, null=True)
     environmental_report_received = models.DateField(blank=True, null=True)
     environmental_report_complete = models.BooleanField(default=False)
+    abatement_required = models.NullBooleanField(default=None)
+    abatement_complete = models.DateField(blank=True, null=True)
 
     bid_date = models.DateField(blank=True, null=True)
     bid_group = models.CharField(max_length=25, blank=True)
