@@ -21,6 +21,7 @@ class statusInline(admin.TabularInline):
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('parcel','street_address','get_current_status')
+    search_fields = ['parcel', 'street_address']
     fieldsets = (
         (None, {
             'fields':
