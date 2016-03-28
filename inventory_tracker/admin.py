@@ -54,16 +54,6 @@ class PropertyAdmin(admin.ModelAdmin):
                 (
                     'landmarks_clearance_date',
                     ('preinspection_complete','preinspection_date'),
-                    ('environmental_report_complete','environmental_report_received'),
-                    ('abatement_required', 'abatement_complete')
-                )
-            }
-        ),
-        ('Bidding', {
-            'fields':
-                (
-                    ('bid_group','bid_date'),
-                    ('bidder_awarded','contract_date')
                 )
             }
         ),
@@ -72,6 +62,23 @@ class PropertyAdmin(admin.ModelAdmin):
                 (
                     'quiet_title_status',
                     ('quiet_title_attorney','quiet_title_ordered_date')
+                )
+            }
+        ),
+        ('Environmental Report', {
+            'fields':
+                (
+                    ('environmental_report_complete','environmental_report_received'),
+                    ('abatement_required', 'abatement_complete'),
+                )
+            }
+
+        ),
+        ('Bidding', {
+            'fields':
+                (
+                    ('bid_group','bid_date'),
+                    ('bidder_awarded','contract_date')
                 )
             }
         ),

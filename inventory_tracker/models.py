@@ -106,6 +106,7 @@ class status(models.Model):
     REMOVE_REQUESTED_STATUS = 6 # some party has requested that the property be removed from BEP
     REMOVE_REJECTED_STATUS = 7 # Renew Indianapolis rejected the rqeuest to remove the property from BEP
     REMOVE_SUBMITED_STATUS = 8 # Remove request submitted to IHCDA
+    REMOVE_COMPLETED_STATUS = 9 # removed
 
     STATUS_CHOICES = (
         (ADD_REQUESTED_STATUS, 'Some party has requested that the property be added to BEP'),
@@ -114,8 +115,9 @@ class status(models.Model):
         (IHCDA_ACCEPTED_STATUS, 'IHCDA added the property to BEP'),
         (IHCDA_REJECTED_STATUS, 'IHCDA rejected the BEP add request'),
         (REMOVE_REQUESTED_STATUS, 'Some party has requested that the property be removed from BEP'),
-        (REMOVE_REJECTED_STATUS, 'Renew Indianapolis rejected the rqeuest to remove the property from BEP'),
-        (REMOVE_SUBMITED_STATUS, 'Remove request submitted to IHCDA')
+        (REMOVE_REJECTED_STATUS, 'Renew Indianapolis rejected the request to remove the property from BEP'),
+        (REMOVE_SUBMITED_STATUS, 'Remove request submitted to IHCDA'),
+        (REMOVE_COMPLETED_STATUS, 'IHCDA removed the property from BEP'),
     )
 
     state = models.IntegerField(choices=STATUS_CHOICES, blank=False)
