@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'easy_thumbnails',
     'inventory_tracker',
+    'django_filters',
 )
 
 MIDDLEWARE_CLASSES = (
