@@ -118,8 +118,13 @@ class PhotoAdmin(admin.ModelAdmin):
     fields = ( 'prop', ('image', 'image_thumb'), 'description','timestamp')
     readonly_fields = ('image_thumb','timestamp')
 
-admin.site.register(Property, PropertyAdmin)
-admin.site.register(claim)
-admin.site.register(status)
-admin.site.register(Bidder)
-admin.site.register(photo, PhotoAdmin)
+class CustomAdminSite(admin.AdminSite):
+    site_header = "bepbep Inventory Administration"
+    site_title = "bepbep - Renew Indianapolis"
+
+admin_site = CustomAdminSite(name='bepbep_admin')
+admin_site.register(Property, PropertyAdmin)
+admin_site.register(claim)
+admin_site.register(status)
+admin_site.register(Bidder)
+admin_site.register(photo, PhotoAdmin)

@@ -1,0 +1,23 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+<div id="content-main">
+<form action="" method="get">
+      {{ filter.form.as_p }}
+      <input type="submit" />
+  </form>
+  <hr/>
+{% with results=object_list %}
+  {% include 'admin/change_list_results.html' %}
+{% endwith %}
+
+  <div class="results">
+    <table id="results_list">
+      <tbody>
+  {% for obj in object_list %}
+      <tr><td>{{ obj.parcel }}</td><td>{{ obj.street_address }}</td></tr>
+  {% endfor %}
+</tbody>
+  </div>
+</div>
+{% endblock content %}
