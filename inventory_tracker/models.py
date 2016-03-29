@@ -19,8 +19,8 @@ class Bidder(models.Model):
 
 class Property(models.Model):
 
-    parcel = models.CharField(max_length=7)
-    street_address = models.CharField(max_length=255)
+    parcel = models.CharField(max_length=7, unique=True)
+    street_address = models.CharField(max_length=255, unique=True)
 
     site_control = models.BooleanField(default=False)
 
