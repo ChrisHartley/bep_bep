@@ -34,7 +34,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Ownership and Control', {
             'fields':
                 (
-                    'site_control',
+                    ('site_control','interim_city_ownership')
                     ('originally_city_owned','originally_renew_owned','originally_county_surplus','originally_privately_owned', 'original_private_owner_name')
                 )
             }
