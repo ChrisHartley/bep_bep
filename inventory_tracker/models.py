@@ -1,6 +1,21 @@
 from django.db import models
 from django.utils.text import slugify
 
+class ProgramPartner(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    contact = models.CharField(max_length=255, blank=False)
+    email = models.CharField(max_length=255, blank=True)
+    email2 = models.CharField(max_length=255, blank=True)
+    phone = models.CharField(max_length=255, blank=True)
+    mailing_address_1 = models.CharField(max_length=255, blank=True)
+    mailing_address_2 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=255, blank=True)
+    state = models.CharField(max_length=255, blank=True)
+    zipcode = models.CharField(max_length=255, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
 class Bidder(models.Model):
     name = models.CharField(max_length=255, blank=False)
     contact = models.CharField(max_length=255, blank=False)
@@ -22,13 +37,16 @@ class Property(models.Model):
     parcel = models.CharField(max_length=7, unique=True)
     street_address = models.CharField(max_length=255, unique=True)
 
-    site_control = models.BooleanField(default=False)
+    site_control = models.BooleanField(default=False, verbose_name="Renew Indianapolis site control")
 
+    interim_city_ownership = models.BooleanField(default=False)
     originally_renew_owned = models.BooleanField(default=False)
     originally_city_owned = models.BooleanField(default=False)
     originally_county_surplus = models.BooleanField(default=False)
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
+
+    program_partner = models.ForeignKey(ProgramPartner, null=True)
 
     scoring_matrix_complete = models.BooleanField(default=False)
 
