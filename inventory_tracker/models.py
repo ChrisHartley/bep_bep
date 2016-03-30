@@ -43,6 +43,8 @@ class Property(models.Model):
     originally_renew_owned = models.BooleanField(default=False)
     originally_city_owned = models.BooleanField(default=False)
     originally_county_surplus = models.BooleanField(default=False)
+    originally_tax_sale_unsold = models.BooleanField(default=False)
+
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
 
