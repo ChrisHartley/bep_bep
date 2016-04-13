@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^admin/', include(admin_site.urls)),
     url(r'^$', staff_member_required(views.PropertyView.as_view()), name='fieldwork'),
     url(r'^filter/', FilterView.as_view(model=Property)),
+    url(r'^filter2/', staff_member_required(views.property_filter), name='filter'),
 ]

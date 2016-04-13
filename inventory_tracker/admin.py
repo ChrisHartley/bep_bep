@@ -22,6 +22,7 @@ class statusInline(admin.TabularInline):
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('parcel','street_address','get_current_status')
     search_fields = ['parcel', 'street_address']
+    #list_filter = ('site_control','quiet_title_status'),
     fieldsets = (
         (None, {
             'fields':
@@ -102,9 +103,10 @@ class PropertyAdmin(admin.ModelAdmin):
 
 
     inlines = [
-        claimInline,
         statusInline,
-    ]
+        claimInline,
+        ]
+        
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(PropertyAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'notes':
@@ -120,8 +122,8 @@ class PhotoAdmin(admin.ModelAdmin):
     readonly_fields = ('image_thumb','timestamp')
 
 class CustomAdminSite(admin.AdminSite):
-    site_header = "bepbep Inventory Administration"
-    site_title = "bepbep - Renew Indianapolis"
+    site_header = "BepBep Inventory Administration"
+    site_title = "BepBep - Renew Indianapolis"
 
 admin_site = CustomAdminSite(name='bepbep_admin')
 admin_site.register(Property, PropertyAdmin)
