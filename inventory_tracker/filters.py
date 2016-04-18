@@ -51,7 +51,8 @@ class InventoryFilter(django_filters.FilterSet):
         model = Property
         #fields = ['street_address']
         form = PropertySearchForm
-
+        exclude = ['quiet_title_status']
+        order_by = True
 #         fields = {
 # #            'parcel': ['icontains'],
 # #            'street_address': ['icontains'],

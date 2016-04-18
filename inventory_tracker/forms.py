@@ -20,8 +20,8 @@ class AllValuesNoneFilter(django_filters.ChoiceFilter):
         return super(AllValuesNoneFilter, self).field
 
 class PropertySearchForm(forms.ModelForm):
-    quiet_title_status = AllValuesNoneFilter(name='quiet_title_status', label="Quiet Title Status")
+    all_quiet_on_eastern_front = AllValuesNoneFilter(name='quiet_title_status', label="All Quiet on the Eastern Front")
 
     class Meta:
         model = Property
-        exclude = []
+        exclude = ['quiet_title_status']
