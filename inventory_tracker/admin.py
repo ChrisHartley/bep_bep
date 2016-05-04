@@ -79,7 +79,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Quiet Title', {
             'fields':
                 (
-                    'quiet_title_status',
+                    'quiet_title_complete',
                     'quiet_title_attorney',
                     'quiet_title_ordered_date'
                 )
