@@ -35,9 +35,16 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Ownership and Control', {
             'fields':
                 (
-                    ('site_control','interim_city_ownership','program_partner'),
-                    ('originally_city_owned','originally_renew_owned','originally_county_surplus','originally_tax_sale_unsold','originally_privately_owned', 'original_private_owner_name'),
-                    ('planned_end_use'),
+                    'site_control',
+                    'interim_city_ownership',
+                    'program_partner',
+                    'originally_city_owned',
+                    'originally_renew_owned',
+                    'originally_county_surplus',
+                    'originally_tax_sale_unsold',
+                    'originally_privately_owned',
+                    'original_private_owner_name',
+                    'planned_end_use',
                 )
             }
         ),
@@ -48,7 +55,8 @@ class PropertyAdmin(admin.ModelAdmin):
         ),
         ('Public Notice', {
             'fields': (
-                ('public_notice_complete','public_notice_date'),
+                'public_notice_complete',
+                'public_notice_date',
                 )
             }
         ),
@@ -56,7 +64,8 @@ class PropertyAdmin(admin.ModelAdmin):
             { 'fields':
                 (
                     'landmarks_clearance_date',
-                    ('preinspection_complete','preinspection_date'),
+                    'preinspection_complete',
+                    'preinspection_date',
                 )
             }
         ),
@@ -64,15 +73,18 @@ class PropertyAdmin(admin.ModelAdmin):
             'fields':
                 (
                     'quiet_title_status',
-                    ('quiet_title_attorney','quiet_title_ordered_date')
+                    'quiet_title_attorney',
+                    'quiet_title_ordered_date'
                 )
             }
         ),
         ('Environmental Report', {
             'fields':
                 (
-                    ('environmental_report_complete','environmental_report_received'),
-                    ('abatement_required', 'abatement_complete'),
+                    'environmental_report_complete',
+                    'environmental_report_received',
+                    'abatement_required',
+                    'abatement_complete',
                 )
             }
 
@@ -80,15 +92,19 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Bidding', {
             'fields':
                 (
-                    ('bid_group','bid_date'),
-                    ('bidder_awarded','contract_date')
+                    'bid_group',
+                    'bid_date',
+                    'bidder_awarded',
+                    'contract_date'
                 )
             }
         ),
         ('Demolished', {
             'fields':
                 (
-                    ('demolished','demolished_date','sold_date'),
+                    'demolished',
+                    'demolished_date',
+                    'sold_date',
                 )
             }
         ),
@@ -106,7 +122,7 @@ class PropertyAdmin(admin.ModelAdmin):
         statusInline,
         claimInline,
         ]
-        
+
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(PropertyAdmin, self).formfield_for_dbfield(db_field, **kwargs)
         if db_field.name == 'notes':
