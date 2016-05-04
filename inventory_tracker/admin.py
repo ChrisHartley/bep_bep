@@ -49,8 +49,19 @@ class PropertyAdmin(admin.ModelAdmin):
             }
         ),
         ('Scoring Matrix', {
-            'fields': ('scoring_matrix_complete',),
-
+            'fields': (
+                'scoring_matrix_complete',
+                'on_ihcda_list',
+                'on_ihcda_list_date',
+                'add_requested',
+                'add_requested_note',
+                'add_requested_date',
+                'add_waiver_submitted',
+                'remove_requested',
+                'remove_requested_note',
+                'remove_requested_date',
+                'remove_waiver_submitted',
+                )
             }
         ),
         ('Public Notice', {

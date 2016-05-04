@@ -61,7 +61,6 @@ class Property(models.Model):
     remove_requested_date = models.DateField(blank=True, null=True)
     remove_waiver_submitted = models.DateField(blank=True, null=True)
 
-
     planned_end_use = models.CharField(max_length=512, blank=True)
 
     program_partner = models.ForeignKey(ProgramPartner, null=True, blank=True)
