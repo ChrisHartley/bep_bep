@@ -105,7 +105,7 @@ class Property(models.Model):
         (NOT_COMPLETE_STATUS,'No Quiet Title')
     )
 
-    quiet_title_status = models.IntegerField(choices=QUIET_TITLE_STATUS_CHOICES, default=NOT_COMPLETE_STATUS)
+#    quiet_title_status = models.IntegerField(choices=QUIET_TITLE_STATUS_CHOICES, default=NOT_COMPLETE_STATUS)
     quiet_title_complete = models.BooleanField(default=False)
     quiet_title_attorney = models.CharField(max_length=255, blank=True)
     quiet_title_ordered_date = models.DateField(blank=True, null=True)
