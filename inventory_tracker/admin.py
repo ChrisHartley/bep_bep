@@ -111,7 +111,6 @@ class PropertyAdmin(admin.ModelAdmin):
                 (
                     'demolished',
                     'demolished_date',
-                    'sold_date',
                 )
             }
         ),
