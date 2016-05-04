@@ -60,15 +60,22 @@ class PropertyAdmin(admin.ModelAdmin):
                 )
             }
         ),
-        ('Clearance and Release',
+        ('Landmarks',
             { 'fields':
                 (
                     'landmarks_clearance_date',
+                )
+            }
+        ),
+        ('BLN Pre-bid Survey',
+            { 'fields':
+                (
                     'preinspection_complete',
                     'preinspection_date',
                 )
             }
         ),
+
         ('Quiet Title', {
             'fields':
                 (
