@@ -126,7 +126,6 @@ class PropertyAdmin(admin.ModelAdmin):
 
     inlines = [
         statusInline,
-        claimInline,
         ]
 
     def formfield_for_dbfield(self, db_field, **kwargs):
