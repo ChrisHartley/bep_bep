@@ -1,7 +1,7 @@
 from django import forms
 import django_filters
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Field
+from crispy_forms.layout import Submit, Layout, Fieldset, Field, Div, Reset
 from crispy_forms.bootstrap import FormActions
 
 
@@ -41,7 +41,20 @@ class NewPropertySearchForm(forms.ModelForm):
 
     class Meta:
         model = Property
-        fields = ['parcel', 'street_address', 'on_ihcda_list', 'scoring_matrix_complete', 'bid_group', 'bid_date', 'bidder_awarded', 'contract_date', 'notes']
+        # fields = [
+        #     'parcel',
+        #     'street_address',
+        #     'on_ihcda_list',
+        #     'scoring_matrix_complete',
+        #     'bid_group',
+        #     'bid_date',
+        #     'bidder_awarded',
+        #     'contract_date',
+        #     'notes',
+        #     'program_partner'
+        #
+        # ]
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(NewPropertySearchForm, self).__init__(*args, **kwargs)
@@ -60,17 +73,30 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Address and Parcel',
                 Field('street_address'),
                 Field('parcel'),
+            ),
+            Fieldset(
+                'Site Control and Property Source',
+                Field('site_control'),
+                Field('interim_city_ownership'),
+                Field('originally_renew_owned'),
+                Field('originally_city_owned'),
+                Field('originally_county_surplus'),
+                Field('originally_tax_sale_unsold'),
+                Field('originally_privately_owned'),
+                Field('original_private_owner_name')
 
-                #HTML(
-                #    '<input type="checkbox" onclick="toggleDraw(this);" name="searchPolygon" value="polygon">Draw search area on map</input>'),
-                #Field('parcel'),
-                #Field('streetAddress'),
-                #Field('status'),
+
             ),
             Fieldset(
                 'Scoring Matrix',
                 Field('scoring_matrix_complete'),
                 Field('on_ihcda_list'),
+                Field('on_ihcda_list_date'),
+            ),
+            Fieldset(
+                'Public Notice',
+                Field('public_notice_complete'),
+                Field('public_notice_date'),
             ),
             Fieldset(
                 'Bidding',
@@ -79,9 +105,18 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('bidder_awarded'),
                 Field('contract_date'),
             ),
+            Fieldset(
+                'Demolished',
+                Field('demolished'),
+                Field('demolished_date')
+            ),
+            Fieldset(
+                'Notes',
+                Field('notes')
+
+            ),
             FormActions(
                 Submit('save', 'Search'),
-
-
+                #Reset('reset', 'Reset'),
             ),
         )
