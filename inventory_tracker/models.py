@@ -48,8 +48,8 @@ class Property(models.Model):
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
 
-    on_ihcda_list = models.BooleanField(default=False)
-    on_ihcda_list_date = models.DateField(blank=True, null=True)
+    on_ihcda_list = models.BooleanField(default=False, verbose_name='On IHCDA list')
+    on_ihcda_list_date = models.DateField(blank=True, null=True, verbose_name='IHCDA list date')
 
     add_requested = models.BooleanField(default=False)
     add_requested_note = models.CharField(max_length=255, blank=True)
