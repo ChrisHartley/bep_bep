@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'easy_thumbnails',
+    'crispy_forms',
     'inventory_tracker',
     'django_filters',
     'debug_toolbar',
