@@ -86,7 +86,7 @@ class Property(models.Model):
     bid_group = models.CharField(max_length=25, blank=True)
 
     bidder_awarded = models.ForeignKey(Bidder, null=True, blank=True)
-    contract_winner = models.CharField(max_length=255, blank=True)
+    #contract_winner = models.CharField(max_length=255, blank=True)
     contract_date = models.DateField(blank=True, null=True)
 
     demolished_date = models.DateField(blank=True, null=True)
