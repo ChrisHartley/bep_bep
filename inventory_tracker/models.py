@@ -63,7 +63,7 @@ class Property(models.Model):
 
     planned_end_use = models.CharField(max_length=512, blank=True)
 
-    program_partner = models.ForeignKey(ProgramPartner, null=True, blank=True)
+    program_partner = models.ForeignKey(ProgramPartner, null=True, blank=True, default=6)
 
     scoring_matrix_complete = models.BooleanField(default=False)
 
