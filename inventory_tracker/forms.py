@@ -4,8 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Fieldset, Field, Div, Reset
 from crispy_forms.bootstrap import FormActions
 
-
-from .models import Property, photo
+from .models import Property, photo, ProgramPartner
 
 class PropertyFieldworkForm(forms.ModelForm):
     class Meta:
@@ -32,33 +31,12 @@ class PropertySearchForm(forms.ModelForm):
 
 class NewPropertySearchForm(forms.ModelForm):
 
-    date_field = forms.DateField(
-        widget=forms.TextInput(
-            attrs={'type': 'date'}
-            )
-        ),
-
-
     class Meta:
         model = Property
-        # fields = [
-        #     'parcel',
-        #     'street_address',
-        #     'on_ihcda_list',
-        #     'scoring_matrix_complete',
-        #     'bid_group',
-        #     'bid_date',
-        #     'bidder_awarded',
-        #     'contract_date',
-        #     'notes',
-        #     'program_partner'
-        #
-        # ]
         exclude = []
 
     def __init__(self, *args, **kwargs):
         super(NewPropertySearchForm, self).__init__(*args, **kwargs)
-        #self.fields['searchArea'].widget = HiddenInput()
         self.helper = FormHelper()
         self.helper.form_id = 'NewPropertySearchForm'
         self.helper.form_class = 'form-horizontal'
@@ -77,6 +55,7 @@ class NewPropertySearchForm(forms.ModelForm):
             Fieldset(
                 'Site Control and Property Source',
                 Field('site_control'),
+                Field('program_partner'),
                 Field('interim_city_ownership'),
                 Field('originally_renew_owned'),
                 Field('originally_city_owned'),
@@ -104,6 +83,13 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('bid_date'),
                 Field('bidder_awarded'),
                 Field('contract_date'),
+            ),
+            Fieldset(
+                'Quiet Title',
+                Field('quiet_title_complete'),
+                Field('quiet_title_attorney'),
+                Field('quiet_title_ordered_date'),
+
             ),
             Fieldset(
                 'Demolished',

@@ -44,6 +44,9 @@ class InventoryFilter(django_filters.FilterSet):
     public_notice_complete = django_filters.BooleanFilter(lookup_type='exact', label="Public notice complete", help_text="")
     public_notice_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date notice published', help_text='YYYY-MM-DD')
 
+    quiet_title_complete = django_filters.BooleanFilter(lookup_type='exact', label="Quiet Title complete", help_text="")
+    quiet_title_attorney = django_filters.CharFilter(lookup_type='icontains', label='Quiet title attorney', help_text='Case insentive text search, partial matching supported')
+    quiet_title_ordered_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date quiet title action ordered', help_text='YYYY-MM-DD')
 
 
     bid_group = django_filters.CharFilter(lookup_type='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
@@ -57,6 +60,8 @@ class InventoryFilter(django_filters.FilterSet):
     demolished = django_filters.BooleanFilter(lookup_type='exact', label="Demolished", help_text="")
 
     notes = django_filters.CharFilter(lookup_type='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
+
+
 
     # public_notice_date_1 = django_filters.DateFilter(name='public_notice_date', lookup_expr=['gt', 'lt'])
     # public_notice_date_2 = django_filters.DateFilter(name='public_notice_date', lookup_expr=['gt', 'lt'])
