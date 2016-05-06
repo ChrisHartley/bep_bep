@@ -35,7 +35,15 @@ class InventoryFilter(django_filters.FilterSet):
     originally_privately_owned = django_filters.BooleanFilter(label='Privately Owned', help_text='')
     original_private_owner_name = django_filters.CharFilter(lookup_type='icontains', label='Private owner name', help_text='')
 
+    add_requested = django_filters.BooleanFilter(label='Property requested to be added to BEP', help_text='')
+    add_requested_note = django_filters.CharFilter(lookup_type='icontains', label='Add requested note', help_text='Case insentive text search, partial matching supported')
+    add_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date add requested', help_text='YYYY-MM-DD')
+    add_waiver_submitted = django_filters.BooleanFilter(label='Waiver to add property submitted to IHCDA', help_text='')
 
+    remove_requested = django_filters.BooleanFilter(label='Property requested to be removed from BEP', help_text='')
+    remove_requested_note = django_filters.CharFilter(lookup_type='icontains', label='Remove requested note', help_text='Case insentive text search, partial matching supported')
+    remove_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date remove requested', help_text='YYYY-MM-DD')
+    remove_waiver_submitted = django_filters.BooleanFilter(label='Waiver to remove property submitted to IHCDA', help_text='')
 
     scoring_matrix_complete = django_filters.BooleanFilter(lookup_type='exact', label='Scoring matrix completed', help_text='')
     on_ihcda_list = django_filters.BooleanFilter(lookup_type='exact', label="On IHCDA's list", help_text="")
@@ -58,6 +66,7 @@ class InventoryFilter(django_filters.FilterSet):
 
     demolished_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date demolished', help_text='YYYY-MM-DD')
     demolished = django_filters.BooleanFilter(lookup_type='exact', label="Demolished", help_text="")
+    all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_type='exact', label="All demolition checklist components completed", help_text="")
 
     notes = django_filters.CharFilter(lookup_type='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
 

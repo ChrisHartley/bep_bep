@@ -63,14 +63,26 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('originally_tax_sale_unsold'),
                 Field('originally_privately_owned'),
                 Field('original_private_owner_name')
-
-
             ),
             Fieldset(
                 'Scoring Matrix',
                 Field('scoring_matrix_complete'),
                 Field('on_ihcda_list'),
                 Field('on_ihcda_list_date'),
+            ),
+            Fieldset(
+                'Add to BEP',
+                Field('add_requested'),
+                Field('add_requested_note'),
+                Field('add_waiver_submitted'),
+                Field('add_requested_date'),
+            ),
+            Fieldset(
+                'Remove from BEP',
+                Field('remove_requested'),
+                Field('remove_requested_note'),
+                Field('remove_waiver_submitted'),
+                Field('remove_requested_date'),
             ),
             Fieldset(
                 'Public Notice',
@@ -93,6 +105,7 @@ class NewPropertySearchForm(forms.ModelForm):
             ),
             Fieldset(
                 'Demolished',
+                Field('all_demolition_checklist_components_completed'),
                 Field('demolished'),
                 Field('demolished_date')
             ),

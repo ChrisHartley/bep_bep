@@ -89,8 +89,9 @@ class Property(models.Model):
     #contract_winner = models.CharField(max_length=255, blank=True)
     contract_date = models.DateField(blank=True, null=True)
 
-    demolished_date = models.DateField(blank=True, null=True)
+    demolished_date = models.DateField(blank=True, null=True, verbose_name='Invoice received date')
     demolished = models.BooleanField(default=False)
+    all_demolition_checklist_components_completed = models.BooleanField(default=False, verbose_name='All demolition checklist components completed')
 
     notes = models.CharField(max_length=512, blank=True)
 
