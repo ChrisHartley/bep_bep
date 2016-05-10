@@ -95,6 +95,18 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('landmarks_cleared'),
             ),
             Fieldset(
+                'BLN Pre-bid Survey',
+                Field('preinspection_complete'),
+                Field('preinspection_date'),
+            ),
+            Fieldset(
+                'Environmental Testing and Abatement',
+                Field('environmental_report_received'),
+                Field('environmental_report_complete'),
+                Field('abatement_required'),
+                Field('abatement_complete'),
+            ),
+            Fieldset(
                 'Bidding',
                 Field('bid_group'),
                 Field('bid_date'),
@@ -116,7 +128,8 @@ class NewPropertySearchForm(forms.ModelForm):
             ),
             Fieldset(
                 'Notes',
-                Field('notes')
+                Field('notes'),
+                Field('planned_end_use')
 
             ),
             FormActions(

@@ -59,6 +59,14 @@ class InventoryFilter(django_filters.FilterSet):
     landmarks_response_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date of Landmarks\' response', help_text='YYYY-MM-DD')
     landmarks_cleared = django_filters.BooleanFilter(lookup_type='exact', label="Landmarks Cleared", help_text="")
 
+    preinspection_complete = django_filters.BooleanFilter(lookup_type='exact', label="BLN Pre-bid survey complete", help_text="")
+    preinspection_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date pre-bid survey completed', help_text='YYYY-MM-DD')
+
+    environmental_report_received = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Environmental report received', help_text='YYYY-MM-DD')
+    environmental_report_complete = django_filters.BooleanFilter(lookup_type='exact', label="Environmental report complete", help_text="")
+    abatement_required = django_filters.BooleanFilter(lookup_type='exact', label="Abatement required", help_text="")
+    abatement_complete = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Visual Inspection Certification received', help_text='YYYY-MM-DD')
+
     bid_group = django_filters.CharFilter(lookup_type='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
     bid_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Bid Date', help_text='YYYY-MM-DD')
     bidder_awarded = django_filters.ModelChoiceFilter(queryset=Bidder.objects.all(), label='Bidder awarded', help_text='')
@@ -71,7 +79,7 @@ class InventoryFilter(django_filters.FilterSet):
     all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_type='exact', label="All demolition checklist components completed", help_text="")
 
     notes = django_filters.CharFilter(lookup_type='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
-
+    planned_end_use = django_filters.CharFilter(lookup_type='icontains', label='Planned end use', help_text='Case insentive text search, partial matching supported')
 
 
     # public_notice_date_1 = django_filters.DateFilter(name='public_notice_date', lookup_expr=['gt', 'lt'])
