@@ -120,6 +120,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Demolished', {
             'fields':
                 (
+                    'all_demolition_checklist_components_completed',
                     'demolished',
                     'demolished_date',
                 )

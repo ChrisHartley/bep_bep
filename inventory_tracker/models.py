@@ -80,13 +80,12 @@ class Property(models.Model):
     environmental_report_received = models.DateField(blank=True, null=True)
     environmental_report_complete = models.BooleanField(default=False)
     abatement_required = models.NullBooleanField(default=None)
-    abatement_complete = models.DateField(blank=True, null=True)
+    abatement_complete = models.DateField(blank=True, null=True, verbose_name='Visual Inspection Certification')
 
     bid_date = models.DateField(blank=True, null=True)
     bid_group = models.CharField(max_length=25, blank=True)
 
     bidder_awarded = models.ForeignKey(Bidder, null=True, blank=True)
-    #contract_winner = models.CharField(max_length=255, blank=True)
     contract_date = models.DateField(blank=True, null=True)
 
     demolished_date = models.DateField(blank=True, null=True, verbose_name='Invoice received date')
