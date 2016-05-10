@@ -71,10 +71,11 @@ class PropertyAdmin(admin.ModelAdmin):
                 )
             }
         ),
-        ('Landmarks',
+        ('Landmarks Review',
             { 'fields':
                 (
-                    'landmarks_clearance_date',
+                    'landmarks_response_date',
+                    'landmarks_cleared',
                 )
             }
         ),

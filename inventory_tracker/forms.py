@@ -90,6 +90,11 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('public_notice_date'),
             ),
             Fieldset(
+                'Landmarks Review',
+                Field('landmarks_response_date'),
+                Field('landmarks_cleared'),
+            ),
+            Fieldset(
                 'Bidding',
                 Field('bid_group'),
                 Field('bid_date'),

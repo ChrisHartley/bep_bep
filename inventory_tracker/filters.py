@@ -56,6 +56,8 @@ class InventoryFilter(django_filters.FilterSet):
     quiet_title_attorney = django_filters.CharFilter(lookup_type='icontains', label='Quiet title attorney', help_text='Case insentive text search, partial matching supported')
     quiet_title_ordered_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date quiet title action ordered', help_text='YYYY-MM-DD')
 
+    landmarks_response_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date of Landmarks\' response', help_text='YYYY-MM-DD')
+    landmarks_cleared = django_filters.BooleanFilter(lookup_type='exact', label="Landmarks Cleared", help_text="")
 
     bid_group = django_filters.CharFilter(lookup_type='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
     bid_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Bid Date', help_text='YYYY-MM-DD')

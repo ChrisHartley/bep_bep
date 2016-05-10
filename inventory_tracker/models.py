@@ -70,8 +70,8 @@ class Property(models.Model):
     public_notice_complete = models.BooleanField(default=False)
     public_notice_date = models.DateField(blank=True, null=True)
 
-    landmarks_clearance_date = models.DateField(blank=True, null=True)
-
+    landmarks_response_date = models.DateField(blank=True, null=True)
+    landmarks_cleared = models.NullBooleanField(default=None)
 
     preinspection_complete = models.BooleanField(default=False)
     preinspection_date = models.DateField(blank=True, null=True)
