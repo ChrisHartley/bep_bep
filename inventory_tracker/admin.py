@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
 from .models import Property, claim, status, photo, Bidder, ProgramPartner
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib.auth.models import User, Group
 
 
 
@@ -170,5 +170,5 @@ admin_site.register(status)
 admin_site.register(Bidder)
 admin_site.register(ProgramPartner)
 admin_site.register(photo, PhotoAdmin)
-#admin_site.unregister(User)
 admin_site.register(User, UserAdmin)
+admin_site.register(Group, GroupAdmin)
