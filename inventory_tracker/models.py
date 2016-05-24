@@ -78,7 +78,7 @@ class Property(models.Model):
 
     #environmental_report_submitted = models.DateField(blank=True, null=True)
     environmental_report_received = models.DateField(blank=True, null=True)
-    environmental_report_complete = models.BooleanField(default=False)
+    #environmental_report_complete = models.BooleanField(default=False)
     abatement_required = models.NullBooleanField(default=None)
     abatement_complete = models.DateField(blank=True, null=True, verbose_name='Visual Inspection Certification')
 

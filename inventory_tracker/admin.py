@@ -104,7 +104,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Environmental Report', {
             'fields':
                 (
-                    'environmental_report_complete',
+        #            'environmental_report_complete',
                     'environmental_report_received',
                     'abatement_required',
                     'abatement_complete',

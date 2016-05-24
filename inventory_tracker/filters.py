@@ -63,7 +63,7 @@ class InventoryFilter(django_filters.FilterSet):
     preinspection_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date pre-bid survey completed', help_text='YYYY-MM-DD')
 
     environmental_report_received = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Environmental report received', help_text='YYYY-MM-DD')
-    environmental_report_complete = django_filters.BooleanFilter(lookup_type='exact', label="Environmental report complete", help_text="")
+    #environmental_report_complete = django_filters.BooleanFilter(lookup_type='exact', label="Environmental report complete", help_text="")
     abatement_required = django_filters.BooleanFilter(lookup_type='exact', label="Abatement required", help_text="")
     abatement_complete = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Visual Inspection Certification received', help_text='YYYY-MM-DD')
 
