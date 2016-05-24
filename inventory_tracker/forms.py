@@ -102,7 +102,7 @@ class NewPropertySearchForm(forms.ModelForm):
             Fieldset(
                 'Environmental Testing and Abatement',
                 Field('environmental_report_received'),
-                Field('environmental_report_complete'),
+            #    Field('environmental_report_complete'),
                 Field('abatement_required'),
                 Field('abatement_complete'),
             ),
