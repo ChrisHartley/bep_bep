@@ -56,7 +56,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Site Control and Property Source',
                 Field('site_control'),
                 Field('program_partner'),
-                Field('interim_city_ownership'),
+                #Field('interim_city_ownership'),
                 Field('originally_renew_owned'),
                 Field('originally_city_owned'),
                 Field('originally_county_surplus'),

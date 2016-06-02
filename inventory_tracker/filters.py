@@ -27,7 +27,7 @@ class InventoryFilter(django_filters.FilterSet):
     street_address = django_filters.CharFilter(lookup_type='icontains', help_text='Surpports partial matching')
 
     site_control = django_filters.BooleanFilter(label='Site Control', help_text='Renew Indianapolis or Program Partner has site control')
-    interim_city_ownership = django_filters.BooleanFilter(label='Interim city ownership', help_text='')
+    #interim_city_ownership = django_filters.BooleanFilter(label='Interim city ownership', help_text='')
     originally_renew_owned = django_filters.BooleanFilter(label='Renew Indianapolis owned', help_text='')
     originally_city_owned = django_filters.BooleanFilter(label='City owned', help_text='')
     originally_county_surplus = django_filters.BooleanFilter(label='County Surplus', help_text='')

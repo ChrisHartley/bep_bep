@@ -40,7 +40,7 @@ class PropertyAdmin(admin.ModelAdmin):
             'fields':
                 (
                     'site_control',
-                    'interim_city_ownership',
+                    #'interim_city_ownership',
                     'program_partner',
                     'originally_city_owned',
                     'originally_renew_owned',
@@ -83,7 +83,7 @@ class PropertyAdmin(admin.ModelAdmin):
                 )
             }
         ),
-        ('BLN Pre-bid Survey',
+        ('BLN Pre-inspection Report',
             { 'fields':
                 (
                     'preinspection_complete',
