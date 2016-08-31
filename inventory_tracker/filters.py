@@ -80,7 +80,7 @@ class InventoryFilter(django_filters.FilterSet):
     all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_type='exact', label="All demolition checklist components completed", help_text="")
 
     greening_form_submitted_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Greening Form submitted with claim', help_text='YYYY-MM-DD')
-    greening_form_submitted = django_filters.MethodFilter(widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
+    greening_form_submitted = django_filters.MethodFilter(action='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
 
 
     notes = django_filters.CharFilter(lookup_type='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
@@ -122,11 +122,11 @@ class InventoryFilter(django_filters.FilterSet):
     def filter_greening_form_submitted_date_entered(self, queryset, value):
         if value == False:
             return queryset.filter(
-                greening_form_submitted_date=u''
+                greening_form_submitted_date__isnull=True
             )
         if value == True:
             return queryset.exclude(
-                greening_form_submitted_date=u''
+                greening_form_submitted_date__isnull=True
             )
         return queryset
 
