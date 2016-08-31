@@ -1,7 +1,7 @@
 from django import forms
 import django_filters
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset, Field, Div, Reset
+from crispy_forms.layout import Submit, Layout, Fieldset, Field, Div, HTML
 from crispy_forms.bootstrap import FormActions
 
 from .models import Property, photo, ProgramPartner
@@ -109,6 +109,7 @@ class NewPropertySearchForm(forms.ModelForm):
             Fieldset(
                 'Bidding',
                 Field('bid_group'),
+                Field('bid_group_entered'),
                 Field('bid_date'),
                 Field('bidder_awarded'),
                 Field('contract_date'),
@@ -124,7 +125,9 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Demolished',
                 Field('all_demolition_checklist_components_completed'),
                 Field('demolished'),
-                Field('demolished_date')
+                Field('demolished_date'),
+                Field('greening_form_submitted_date'),
+                Field('greening_form_submitted'),
             ),
             Fieldset(
                 'Notes',
@@ -134,6 +137,6 @@ class NewPropertySearchForm(forms.ModelForm):
             ),
             FormActions(
                 Submit('save', 'Search'),
-                #Reset('reset', 'Reset'),
+                HTML("""<a class="btn btn-warning" href="{% url 'filter' %}">Cancel</a>"""),
             ),
         )

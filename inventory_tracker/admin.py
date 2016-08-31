@@ -128,6 +128,7 @@ class PropertyAdmin(admin.ModelAdmin):
                     'all_demolition_checklist_components_completed',
                     'demolished',
                     'demolished_date',
+                    'greening_form_submitted_date',
                 )
             }
         ),

@@ -39,7 +39,6 @@ class Property(models.Model):
 
     site_control = models.BooleanField(default=False, verbose_name="Renew Indianapolis site control")
 
-    interim_city_ownership = models.BooleanField(default=False)
     originally_renew_owned = models.BooleanField(default=False)
     originally_city_owned = models.BooleanField(default=False)
     originally_county_surplus = models.BooleanField(default=False)
@@ -92,6 +91,7 @@ class Property(models.Model):
     demolished = models.BooleanField(default=False)
     all_demolition_checklist_components_completed = models.BooleanField(default=False, verbose_name='All demolition checklist components completed')
 
+    greening_form_submitted_date = models.DateField(blank=True, null=True, verbose_name='Date Greening Form submitted with claim')
     notes = models.CharField(max_length=512, blank=True)
 
     COMPLETE_STATUS = 1

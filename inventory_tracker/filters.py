@@ -68,6 +68,7 @@ class InventoryFilter(django_filters.FilterSet):
     abatement_complete = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Visual Inspection Certification received', help_text='YYYY-MM-DD')
 
     bid_group = django_filters.CharFilter(lookup_type='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
+    bid_group_entered = django_filters.MethodFilter(widget=django_filters.widgets.BooleanWidget(), help_text='', label='Bid group has been entered')
     bid_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Bid Date', help_text='YYYY-MM-DD')
     bidder_awarded = django_filters.ModelChoiceFilter(queryset=Bidder.objects.all(), label='Bidder awarded', help_text='')
     contract_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Contract date', help_text='YYYY-MM-DD')
@@ -77,6 +78,10 @@ class InventoryFilter(django_filters.FilterSet):
     demolished_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date demolished', help_text='YYYY-MM-DD')
     demolished = django_filters.BooleanFilter(lookup_type='exact', label="Demolished", help_text="")
     all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_type='exact', label="All demolition checklist components completed", help_text="")
+
+    greening_form_submitted_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Greening Form submitted with claim', help_text='YYYY-MM-DD')
+    greening_form_submitted = django_filters.MethodFilter(widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
+
 
     notes = django_filters.CharFilter(lookup_type='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
     planned_end_use = django_filters.CharFilter(lookup_type='icontains', label='Planned end use', help_text='Case insentive text search, partial matching supported')
@@ -101,6 +106,31 @@ class InventoryFilter(django_filters.FilterSet):
         #        },
     }
     #street_address = django_filters.CharFilter(lookup_expr='icontains')
+
+
+    def filter_bid_group_entered(self, queryset, value):
+        if value == False:
+            return queryset.filter(
+                bid_group=u''
+            )
+        if value == True:
+            return queryset.exclude(
+                bid_group=u''
+            )
+        return queryset
+
+    def filter_greening_form_submitted_date_entered(self, queryset, value):
+        if value == False:
+            return queryset.filter(
+                greening_form_submitted_date=u''
+            )
+        if value == True:
+            return queryset.exclude(
+                greening_form_submitted_date=u''
+            )
+        return queryset
+
+
 
     class Meta:
 #        model = Property
