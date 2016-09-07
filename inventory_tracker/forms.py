@@ -113,6 +113,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('bid_date'),
                 Field('bidder_awarded'),
                 Field('contract_date'),
+                Field('notice_to_proceed_given'),
             ),
             Fieldset(
                 'Quiet Title',
