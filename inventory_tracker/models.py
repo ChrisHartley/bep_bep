@@ -86,6 +86,8 @@ class Property(models.Model):
 
     bidder_awarded = models.ForeignKey(Bidder, null=True, blank=True)
     contract_date = models.DateField(blank=True, null=True)
+    notice_to_proceed_given = models.DateField(blank=True, null=True, verbose_name='Date notice to proceed given')
+
 
     demolished_date = models.DateField(blank=True, null=True, verbose_name='Invoice received date')
     demolished = models.BooleanField(default=False)

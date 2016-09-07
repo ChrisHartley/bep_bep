@@ -118,7 +118,8 @@ class PropertyAdmin(admin.ModelAdmin):
                     'bid_group',
                     'bid_date',
                     'bidder_awarded',
-                    'contract_date'
+                    'contract_date',
+                    'notice_to_proceed_given',
                 )
             }
         ),

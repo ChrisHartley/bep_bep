@@ -72,6 +72,8 @@ class InventoryFilter(django_filters.FilterSet):
     bid_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Bid Date', help_text='YYYY-MM-DD')
     bidder_awarded = django_filters.ModelChoiceFilter(queryset=Bidder.objects.all(), label='Bidder awarded', help_text='')
     contract_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Contract date', help_text='YYYY-MM-DD')
+    notice_to_proceed_given = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Notice to proceed date', help_text='YYYY-MM-DD')
+    notice_to_proceed_given_entered = django_filters.MethodFilter(widget=django_filters.widgets.BooleanWidget(), help_text='', label='Notice to Proceed has been entered')
 
     program_partner = django_filters.ModelChoiceFilter(queryset=ProgramPartner.objects.all(), label='Program Partner assigned', help_text='')
 
@@ -127,6 +129,17 @@ class InventoryFilter(django_filters.FilterSet):
         if value == True:
             return queryset.exclude(
                 greening_form_submitted_date__isnull=True
+            )
+        return queryset
+
+    def filter_notice_to_proceed_given_entered(self, queryset, value):
+        if value == False:
+            return queryset.filter(
+                notice_to_proceed_given__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                notice_to_proceed_given__isnull=True
             )
         return queryset
 
