@@ -62,10 +62,12 @@ class InventoryFilter(django_filters.FilterSet):
     preinspection_complete = django_filters.BooleanFilter(lookup_type='exact', label="BLN Pre-bid survey complete", help_text="")
     preinspection_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date pre-bid survey completed', help_text='YYYY-MM-DD')
 
+
     environmental_report_received = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Environmental report received', help_text='YYYY-MM-DD')
     #environmental_report_complete = django_filters.BooleanFilter(lookup_type='exact', label="Environmental report complete", help_text="")
     abatement_required = django_filters.BooleanFilter(lookup_type='exact', label="Abatement required", help_text="")
     abatement_complete = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date Visual Inspection Certification received', help_text='YYYY-MM-DD')
+    abatement_complete_boolean = django_filters.MethodFilter(action='filter_abatement_complete_boolean', widget=django_filters.widgets.BooleanWidget(), label='Visual Inspection Certificate received', help_text='')
 
     bid_group = django_filters.CharFilter(lookup_type='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
     bid_group_entered = django_filters.MethodFilter(widget=django_filters.widgets.BooleanWidget(), help_text='', label='Bid group has been entered')
@@ -140,6 +142,17 @@ class InventoryFilter(django_filters.FilterSet):
         if value == True:
             return queryset.exclude(
                 notice_to_proceed_given__isnull=True
+            )
+        return queryset
+
+    def filter_abatement_complete_boolean(self, queryset, value):
+        if value == False:
+            return queryset.filter(
+                abatement_complete__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                abatement_complete__isnull=True
             )
         return queryset
 

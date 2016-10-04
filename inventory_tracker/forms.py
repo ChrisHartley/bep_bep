@@ -105,6 +105,7 @@ class NewPropertySearchForm(forms.ModelForm):
             #    Field('environmental_report_complete'),
                 Field('abatement_required'),
                 Field('abatement_complete'),
+                Field('abatement_complete_boolean'),
             ),
             Fieldset(
                 'Bidding',
