@@ -24,7 +24,7 @@ class statusInline(admin.TabularInline):
     extra = 1
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('parcel','street_address','get_current_status')
+    list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
     search_fields = ['parcel', 'street_address']
     #list_filter = ('site_control','quiet_title_status'),
     fieldsets = (
