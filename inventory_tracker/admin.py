@@ -129,6 +129,7 @@ class PropertyAdmin(admin.ModelAdmin):
                     'all_demolition_checklist_components_completed',
                     'demolished',
                     'demolished_date',
+                    'demolition_cost',
                     'greening_form_submitted_date',
                 )
             }
