@@ -108,6 +108,7 @@ class PropertyAdmin(admin.ModelAdmin):
                     'environmental_report_received',
                     'abatement_required',
                     'abatement_complete',
+                    'environmental_cost',
                 )
             }
 
