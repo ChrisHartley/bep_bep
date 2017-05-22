@@ -178,6 +178,12 @@ class status(models.Model):
 def get_location(instance, filename):
     return '{0}/{1}/{2}'.format('photos',slugify(instance.prop), filename)
 
+class PropertyProxy(Property):
+    class Meta:
+        proxy = True
+        verbose_name = 'Property (from summary view)'
+        verbose_name_plural = 'Summary View of Properties'
+
 class photo(models.Model):
     description = models.CharField(max_length=1024, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)

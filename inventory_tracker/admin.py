@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from .models import Property, claim, status, photo, Bidder, ProgramPartner
+from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
@@ -22,6 +22,15 @@ class statusInline(admin.TabularInline):
     model = status
     formset = OrderedFormSet
     extra = 1
+
+
+
+
+class PropertyOverviewAdmin(admin.ModelAdmin):
+    model = PropertyProxy
+    list_display = ('parcel','street_address', 'bid_group', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'demolished_date' )
+    ordering = ['-bid_group']
+
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
@@ -170,6 +179,7 @@ class CustomAdminSite(admin.AdminSite):
 
 admin_site = CustomAdminSite(name='bepbep_admin')
 admin_site.register(Property, PropertyAdmin)
+admin_site.register(PropertyProxy, PropertyOverviewAdmin)
 admin_site.register(claim)
 admin_site.register(status)
 admin_site.register(Bidder)
