@@ -24,13 +24,31 @@ class statusInline(admin.TabularInline):
     extra = 1
 
 
+class PropertyBidGroupListFilter(admin.SimpleListFilter):
+    title = 'Bid Group'
+    parameter_name = 'bid_group'
 
+    def lookups(self, request, model_admin):
+        qs = model_admin.get_queryset(request)
+        bid_groups = qs.distinct().values('bid_group')
+        results = list()
+        for group in bid_groups:
+            g = group['bid_group'].split('.')[0]
+            if g:
+                results.append(g)
+        for group in sorted(set(results)):
+            yield(group,group)
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(bid_group__startswith=self.value())
+        return queryset
 
 class PropertyOverviewAdmin(admin.ModelAdmin):
     model = PropertyProxy
     list_display = ('parcel','street_address', 'bid_group', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'demolished_date' )
     ordering = ['-bid_group']
-
+    list_filter = (PropertyBidGroupListFilter,)
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
