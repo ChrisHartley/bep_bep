@@ -110,6 +110,7 @@ class Property(models.Model):
     )
 
     quiet_title_complete = models.BooleanField(default=False)
+    quiet_title_required = models.BooleanField(default=False)
     quiet_title_attorney = models.CharField(max_length=255, blank=True)
     quiet_title_ordered_date = models.DateField(blank=True, null=True)
 
