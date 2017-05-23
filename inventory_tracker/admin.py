@@ -44,11 +44,8 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
             return queryset.filter(bid_group__startswith=self.value())
         return queryset
 
-class PropertyOverviewAdmin(admin.ModelAdmin):
-    model = PropertyProxy
-    list_display = ('parcel','street_address', 'bid_group', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'demolished_date' )
-    ordering = ['-bid_group']
-    list_filter = (PropertyBidGroupListFilter,)
+
+
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
@@ -185,6 +182,12 @@ class PropertyAdmin(admin.ModelAdmin):
 
     def get_current_status(self, obj):
             return status.objects.filter(prop=obj).latest('timestamp')
+
+class PropertyOverviewAdmin(PropertyAdmin):
+    model = PropertyProxy
+    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'demolished_date' )
+    ordering = ['-bid_group']
+    list_filter = (PropertyBidGroupListFilter,)
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('prop','description','image_thumb','timestamp')
