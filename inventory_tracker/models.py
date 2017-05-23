@@ -38,6 +38,7 @@ class Property(models.Model):
     street_address = models.CharField(max_length=255, unique=True)
 
     site_control = models.BooleanField(default=False, verbose_name="Renew Indianapolis site control")
+    dmd_site_control = models.BooleanField(default=False, verbose_name="DMD site control")
 
     originally_renew_owned = models.BooleanField(default=False)
     originally_city_owned = models.BooleanField(default=False)
