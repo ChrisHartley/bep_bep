@@ -42,7 +42,7 @@ class NewPropertySearchForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-3'
         self.helper.field_class = 'col-lg-8'
-        self.helper.render_unmentioned_fields = True
+        self.helper.render_unmentioned_fields = False
 
         self.helper.form_method = 'get'
         self.helper.form_action = ''
@@ -55,6 +55,7 @@ class NewPropertySearchForm(forms.ModelForm):
             Fieldset(
                 'Site Control and Property Source',
                 Field('site_control'),
+                Field('dmd_site_control'),
                 Field('program_partner'),
                 #Field('interim_city_ownership'),
                 Field('originally_renew_owned'),
@@ -120,6 +121,7 @@ class NewPropertySearchForm(forms.ModelForm):
             Fieldset(
                 'Quiet Title',
                 Field('quiet_title_complete'),
+                Field('quiet_title_required'),
                 Field('quiet_title_attorney'),
                 Field('quiet_title_ordered_date'),
 

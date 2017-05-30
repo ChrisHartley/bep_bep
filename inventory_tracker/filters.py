@@ -27,6 +27,8 @@ class InventoryFilter(django_filters.FilterSet):
     street_address = django_filters.CharFilter(lookup_type='icontains', help_text='Surpports partial matching')
 
     site_control = django_filters.BooleanFilter(label='Site Control', help_text='Renew Indianapolis or Program Partner has site control')
+    dmd_site_control = django_filters.BooleanFilter(label='DMD Site Control', help_text='DMD has site control')
+
     #interim_city_ownership = django_filters.BooleanFilter(label='Interim city ownership', help_text='')
     originally_renew_owned = django_filters.BooleanFilter(label='Renew Indianapolis owned', help_text='')
     originally_city_owned = django_filters.BooleanFilter(label='City owned', help_text='')
@@ -55,6 +57,8 @@ class InventoryFilter(django_filters.FilterSet):
     public_notice_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date notice published', help_text='YYYY-MM-DD')
 
     quiet_title_complete = django_filters.BooleanFilter(lookup_type='exact', label="Quiet Title complete", help_text="")
+    quiet_title_required = django_filters.BooleanFilter(lookup_type='exact', label="Quiet Title required", help_text="")
+
     quiet_title_attorney = django_filters.CharFilter(lookup_type='icontains', label='Quiet title attorney', help_text='Case insentive text search, partial matching supported')
     quiet_title_ordered_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date'}), label='Date quiet title action ordered', help_text='YYYY-MM-DD')
 
