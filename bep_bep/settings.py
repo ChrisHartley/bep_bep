@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'bep_bep.urls'
@@ -119,6 +120,7 @@ THUMBNAIL_ALIASES = {
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/home/bepbep/bep_bep/media'
+STATIC_ROOT = "/home/chris/Projects/bep_bep/static-collect/"
 
 # Production settings are kept in a separate file, settings_production.py
 # which overrides db, email, secret key, etc with production values
