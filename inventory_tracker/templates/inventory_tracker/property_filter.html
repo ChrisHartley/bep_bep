@@ -29,7 +29,7 @@
         <tr><td>Parcel</td><td>Street Address</td><td>On IHCDA List</td><td>last_status</td></tr>
       </thead>
       <tbody>
-  {% for obj in filter %}
+  {% for obj in filter.qs %}
       <tr><td><a target="_blank" href="{% url 'admin:inventory_tracker_property_change' obj.id %}">{{obj.parcel}}</a></td><td>{{obj.street_address}}</td><td>{{obj.on_ihcda_list|yesno:"Yes,No,Error"}}</td><td>{{obj.last_status}}</td></tr>
   {% endfor %}
 </tbody>

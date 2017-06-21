@@ -64,7 +64,8 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('originally_privately_owned'),
                 Field('original_private_owner_name'),
                 Field('original_private_owner_contact'),
-                Field('private_owner_purchase_agreement_signed'),
+                Field('private_owner_purchase_agreement_signed_boolean'),
+                Field('private_owner_purchase_agreement_signed_date'),
             ),
             Fieldset(
                 'Scoring Matrix',

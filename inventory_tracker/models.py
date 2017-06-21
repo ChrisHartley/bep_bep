@@ -48,7 +48,7 @@ class Property(models.Model):
     originally_privately_owned = models.BooleanField(default=False)
     original_private_owner_name = models.CharField(max_length=255, blank=True, null=False)
     original_private_owner_contact = models.CharField(verbose_name='Contact information for the private owner', max_length=1024, blank=True, null=False)
-    private_owner_purchase_agreement_signed = models.NullBooleanField(verbose_name='Purchase agreement signed by private owner', default=None)
+    private_owner_purchase_agreement_signed = models.DateField(verbose_name='Date purchase agreement signed by private owner', blank=True, null=True)
 
 
     on_ihcda_list = models.BooleanField(default=False, verbose_name='On IHCDA list')
