@@ -73,6 +73,8 @@ class PropertyAdmin(admin.ModelAdmin):
                     'originally_tax_sale_unsold',
                     'originally_privately_owned',
                     'original_private_owner_name',
+                    'original_private_owner_contact',
+                    'private_owner_purchase_agreement_signed',
                     'planned_end_use',
                 )
             }

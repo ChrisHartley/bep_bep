@@ -57,13 +57,14 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('site_control'),
                 Field('dmd_site_control'),
                 Field('program_partner'),
-                #Field('interim_city_ownership'),
                 Field('originally_renew_owned'),
                 Field('originally_city_owned'),
                 Field('originally_county_surplus'),
                 Field('originally_tax_sale_unsold'),
                 Field('originally_privately_owned'),
-                Field('original_private_owner_name')
+                Field('original_private_owner_name'),
+                Field('original_private_owner_contact'),
+                Field('private_owner_purchase_agreement_signed'),
             ),
             Fieldset(
                 'Scoring Matrix',

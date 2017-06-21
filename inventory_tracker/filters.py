@@ -36,6 +36,9 @@ class InventoryFilter(django_filters.FilterSet):
     originally_tax_sale_unsold = django_filters.BooleanFilter(label='2015 Tax Sale Unsold', help_text='')
     originally_privately_owned = django_filters.BooleanFilter(label='Privately Owned', help_text='')
     original_private_owner_name = django_filters.CharFilter(lookup_type='icontains', label='Private owner name', help_text='')
+    original_private_owner_contact = django_filters.CharFilter(lookup_type='icontains', label='Private owner contact information', help_text='')
+    private_owner_purchase_agreement_signed = django_filters.BooleanFilter(label='Purchase agreement signed by private seller', help_text='')
+
 
     add_requested = django_filters.BooleanFilter(label='Property requested to be added to BEP', help_text='')
     add_requested_note = django_filters.CharFilter(lookup_type='icontains', label='Add requested note', help_text='Case insentive text search, partial matching supported')
