@@ -77,7 +77,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Add to BEP',
                 Field('add_requested'),
                 Field('add_requested_note'),
-                Field('add_waiver_submitted'),
+                Field('add_waiver_submitted_boolean'),
                 Field('add_requested_date'),
             ),
             Fieldset(

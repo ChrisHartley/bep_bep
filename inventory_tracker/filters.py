@@ -45,7 +45,7 @@ class InventoryFilter(django_filters.FilterSet):
     add_requested_note = django_filters.CharFilter(lookup_expr='icontains', label='Add requested note', help_text='Case insentive text search, partial matching supported')
     add_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date add requested', help_text='From - To')
 #    add_waiver_submitted = django_filters.BooleanFilter(label='Waiver to add property submitted to IHCDA', help_text='')
-    add_waiver_submitted = django_filters.BooleanFilter(method='filter_add_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to add property submitted to IHCDA', help_text='')
+    add_waiver_submitted_boolean = django_filters.BooleanFilter(method='filter_add_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to add property submitted to IHCDA', help_text='')
 
     remove_requested = django_filters.BooleanFilter(label='Property requested to be removed from BEP', help_text='')
     remove_requested_note = django_filters.CharFilter(lookup_expr='icontains', label='Remove requested note', help_text='Case insentive text search, partial matching supported')
@@ -163,6 +163,7 @@ class InventoryFilter(django_filters.FilterSet):
         return queryset
 
     def filter_add_waiver_submitted(self, queryset, name, value):
+        print "!!Value: {}".format(value,)
         if value == False:
             return queryset.filter(
                 add_waiver_submitted__isnull=True
