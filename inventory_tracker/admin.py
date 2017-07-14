@@ -188,7 +188,7 @@ class PropertyAdmin(admin.ModelAdmin):
 
 class PropertyOverviewAdmin(PropertyAdmin):
     model = PropertyProxy
-    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'demolished_date' )
+    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'notice_to_proceed_given', 'demolished_date' )
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
