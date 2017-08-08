@@ -118,6 +118,18 @@ class Property(models.Model):
     quiet_title_attorney = models.CharField(max_length=255, blank=True)
     quiet_title_ordered_date = models.DateField(blank=True, null=True)
 
+    POOL_4_0 = 4.0
+    POOL_4_5 = 4.5
+    POOL_UNKNOWN = 0
+
+    IHCDA_GRANT_POOL_CHOICES = (
+        (POOL_4_0,'4.0'),
+        (POOL_4_5,'4.5'),
+        #(POOL_UNKNOWN,'Unknown'),
+    )
+
+    ihcda_grant_pool = models.DecimalField(choices=IHCDA_GRANT_POOL_CHOICES, max_digits=2, decimal_places=1, default=None, blank=True, verbose_name='IHCDA Grant Pool', null=True)
+
     @property
     def last_status(self):
         return status.objects.filter(prop_id=self.id).order_by('date').latest('date')
