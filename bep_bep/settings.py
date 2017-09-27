@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'inventory_tracker',
     'django_filters',
     'debug_toolbar',
+    'read_only_admin',
 )
 
 MIDDLEWARE_CLASSES = (

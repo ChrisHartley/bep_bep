@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy
+from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
@@ -193,6 +193,11 @@ class PropertyOverviewAdmin(PropertyAdmin):
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
+from read_only_admin.admin import ReadonlyAdmin
+class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
+    pass
+
+
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('prop','description','image_thumb','timestamp')
     fields = ( 'prop', ('image', 'image_thumb'), 'description','timestamp')
@@ -205,6 +210,7 @@ class CustomAdminSite(admin.AdminSite):
 admin_site = CustomAdminSite(name='bepbep_admin')
 admin_site.register(Property, PropertyAdmin)
 admin_site.register(PropertyProxy, PropertyOverviewAdmin)
+admin_site.register(ReadOnlyPropertyProxy, ReadOnlyPropertyOverviewAdmin)
 admin_site.register(claim)
 admin_site.register(status)
 admin_site.register(Bidder)

@@ -200,6 +200,13 @@ class PropertyProxy(Property):
         verbose_name = 'Property (from summary view)'
         verbose_name_plural = 'Summary View of Properties'
 
+class ReadOnlyPropertyProxy(PropertyProxy):
+    class Meta:
+        proxy = True
+        verbose_name = 'Read Only Property'
+        verbose_name_plural = 'Read Only Properties'
+
+
 class photo(models.Model):
     description = models.CharField(max_length=1024, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
