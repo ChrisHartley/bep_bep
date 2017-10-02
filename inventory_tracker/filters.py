@@ -51,7 +51,7 @@ class InventoryFilter(django_filters.FilterSet):
     remove_requested_note = django_filters.CharFilter(lookup_expr='icontains', label='Remove requested note', help_text='Case insentive text search, partial matching supported')
     remove_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date remove requested', help_text='From - To')
     #remove_waiver_submitted = django_filters.BooleanFilter(label='Waiver to remove property submitted to IHCDA', help_text='')
-    remove_waiver_submitted = django_filters.BooleanFilter(method='filter_remove_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to remove property submitted to IHCDA', help_text='')
+    remove_waiver_submitted_boolean = django_filters.BooleanFilter(method='filter_remove_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to remove property submitted to IHCDA', help_text='')
 
     scoring_matrix_complete = django_filters.BooleanFilter(lookup_expr='exact', label='Scoring matrix completed', help_text='')
     on_ihcda_list = django_filters.BooleanFilter(lookup_expr='exact', label="On IHCDA's list", help_text="")
@@ -94,7 +94,7 @@ class InventoryFilter(django_filters.FilterSet):
     all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_expr='exact', label="All demolition checklist components completed", help_text="")
 
     greening_form_submitted_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form submitted with claim', help_text='From - To')
-    greening_form_submitted = django_filters.BooleanFilter(method='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
+    greening_form_submitted_boolean = django_filters.BooleanFilter(method='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
 
 
     notes = django_filters.CharFilter(lookup_expr='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
@@ -163,7 +163,6 @@ class InventoryFilter(django_filters.FilterSet):
         return queryset
 
     def filter_add_waiver_submitted(self, queryset, name, value):
-        print "!!Value: {}".format(value,)
         if value == False:
             return queryset.filter(
                 add_waiver_submitted__isnull=True

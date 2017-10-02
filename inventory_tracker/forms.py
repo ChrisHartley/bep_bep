@@ -84,7 +84,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Remove from BEP',
                 Field('remove_requested'),
                 Field('remove_requested_note'),
-                Field('remove_waiver_submitted'),
+                Field('remove_waiver_submitted_boolean'),
                 Field('remove_requested_date'),
             ),
             Fieldset(
@@ -134,7 +134,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('demolished'),
                 Field('demolished_date'),
                 Field('greening_form_submitted_date'),
-                Field('greening_form_submitted'),
+                Field('greening_form_submitted_boolean'),
             ),
             Fieldset(
                 'Notes',
