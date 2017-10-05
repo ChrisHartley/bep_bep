@@ -38,62 +38,62 @@ class InventoryFilter(django_filters.FilterSet):
     original_private_owner_name = django_filters.CharFilter(lookup_expr='icontains', label='Private owner name', help_text='')
     original_private_owner_contact = django_filters.CharFilter(lookup_expr='icontains', label='Private owner contact information', help_text='')
     #private_owner_purchase_agreement_signed = django_filters.BooleanFilter(label='Purchase agreement signed by private seller', help_text='')
-    private_owner_purchase_agreement_signed_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), name='private_owner_purchase_agreement_signed', label='Date purchase agreement to sell signed', help_text='From - To')
+    private_owner_purchase_agreement_signed_date_range = django_filters.DateFromToRangeFilter(name="private_owner_purchase_agreement_signed_date", widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date purchase agreement to sell signed', help_text='From - To')
     private_owner_purchase_agreement_signed_boolean = django_filters.BooleanFilter(method='filter_private_owner_purchase_agreement_signed_boolean', widget=django_filters.widgets.BooleanWidget(), label='Private owner purchase agreement to sell signed', help_text='')
 
     add_requested = django_filters.BooleanFilter(label='Property requested to be added to BEP', help_text='')
     add_requested_note = django_filters.CharFilter(lookup_expr='icontains', label='Add requested note', help_text='Case insentive text search, partial matching supported')
-    add_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date add requested', help_text='From - To')
+    add_requested_date_range = django_filters.DateFromToRangeFilter(name='add_requested_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date add requested', help_text='From - To')
 #    add_waiver_submitted = django_filters.BooleanFilter(label='Waiver to add property submitted to IHCDA', help_text='')
     add_waiver_submitted_boolean = django_filters.BooleanFilter(method='filter_add_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to add property submitted to IHCDA', help_text='')
 
     remove_requested = django_filters.BooleanFilter(label='Property requested to be removed from BEP', help_text='')
     remove_requested_note = django_filters.CharFilter(lookup_expr='icontains', label='Remove requested note', help_text='Case insentive text search, partial matching supported')
-    remove_requested_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date remove requested', help_text='From - To')
+    remove_requested_date_range = django_filters.DateFromToRangeFilter(name='remove_requested_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date remove requested', help_text='From - To')
     #remove_waiver_submitted = django_filters.BooleanFilter(label='Waiver to remove property submitted to IHCDA', help_text='')
     remove_waiver_submitted_boolean = django_filters.BooleanFilter(method='filter_remove_waiver_submitted', widget=django_filters.widgets.BooleanWidget(), label='Waiver to remove property submitted to IHCDA', help_text='')
 
     scoring_matrix_complete = django_filters.BooleanFilter(lookup_expr='exact', label='Scoring matrix completed', help_text='')
     on_ihcda_list = django_filters.BooleanFilter(lookup_expr='exact', label="On IHCDA's list", help_text="")
-    on_ihcda_list_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='List Date', help_text='From - To')
+    on_ihcda_list_date_range = django_filters.DateFromToRangeFilter(name='on_ihcda_list_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='List Date', help_text='From - To')
 
     public_notice_complete = django_filters.BooleanFilter(lookup_expr='exact', label="Public notice complete", help_text="")
-    public_notice_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date notice published', help_text='From - To')
+    public_notice_date_range = django_filters.DateFromToRangeFilter(name='public_notice_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date notice published', help_text='From - To')
 
     quiet_title_complete = django_filters.BooleanFilter(lookup_expr='exact', label="Quiet Title complete", help_text="")
     quiet_title_required = django_filters.BooleanFilter(lookup_expr='exact', label="Quiet Title required", help_text="")
 
     quiet_title_attorney = django_filters.CharFilter(lookup_expr='icontains', label='Quiet title attorney', help_text='Case insentive text search, partial matching supported')
-    quiet_title_ordered_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date quiet title action ordered', help_text='From - To')
+    quiet_title_ordered_date_range = django_filters.DateFromToRangeFilter(name='quiet_title_ordered_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date quiet title action ordered', help_text='From - To')
 
-    landmarks_response_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date of Landmarks\' response', help_text='From - To')
+    landmarks_response_date_range = django_filters.DateFromToRangeFilter(name='landmarks_response_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date of Landmarks\' response', help_text='From - To')
     landmarks_cleared = django_filters.BooleanFilter(lookup_expr='exact', label="Landmarks Cleared", help_text="")
 
     preinspection_complete = django_filters.BooleanFilter(lookup_expr='exact', label="BLN Pre-bid survey complete", help_text="")
-    preinspection_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date pre-bid survey completed', help_text='From - To')
+    preinspection_date_range = django_filters.DateFromToRangeFilter(name='preinspection_date_range', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date pre-bid survey completed', help_text='From - To')
 
 
-    environmental_report_received = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Environmental report received', help_text='From - To')
+    environmental_report_received_range = django_filters.DateFromToRangeFilter(name='environmental_report_received', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Environmental report received', help_text='From - To')
     #environmental_report_complete = django_filters.BooleanFilter(lookup_expr='exact', label="Environmental report complete", help_text="")
     abatement_required = django_filters.BooleanFilter(lookup_expr='exact', label="Abatement required", help_text="")
-    abatement_complete = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Visual Inspection Certification received', help_text='From - To')
+    abatement_complete_range = django_filters.DateFromToRangeFilter(name='abatement_complete_range', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Visual Inspection Certification received', help_text='From - To')
     abatement_complete_boolean = django_filters.BooleanFilter(method='filter_abatement_complete_boolean', widget=django_filters.widgets.BooleanWidget(), label='Visual Inspection Certificate received', help_text='')
 
     bid_group = django_filters.CharFilter(lookup_expr='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
     bid_group_entered = django_filters.BooleanFilter(method='filter_bid_group_entered', widget=django_filters.widgets.BooleanWidget(), help_text='', label='Bid group has been entered')
-    bid_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Bid Date', help_text='From - To')
+    bid_date_range = django_filters.DateFromToRangeFilter(name='bid_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Bid Date', help_text='From - To')
     bidder_awarded = django_filters.ModelChoiceFilter(queryset=Bidder.objects.all(), label='Bidder awarded', help_text='')
-    contract_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Contract date', help_text='From - To')
-    notice_to_proceed_given = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Notice to proceed date', help_text='From - To')
+    contract_date_range = django_filters.DateFromToRangeFilter(name='contract_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Contract date', help_text='From - To')
+    notice_to_proceed_given_range = django_filters.DateFromToRangeFilter(name='notice_to_proceed_given', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Notice to proceed date', help_text='From - To')
     notice_to_proceed_given_entered = django_filters.BooleanFilter(method='filter_notice_to_proceed_given_entered', widget=django_filters.widgets.BooleanWidget(), help_text='', label='Notice to Proceed has been entered')
 
     program_partner = django_filters.ModelChoiceFilter(queryset=ProgramPartner.objects.all(), label='Program Partner assigned', help_text='')
 
-    demolished_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date demolished', help_text='From - To')
+    demolished_date_range = django_filters.DateFromToRangeFilter(name="demolished_date", widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date demolished', help_text='From - To')
     demolished = django_filters.BooleanFilter(lookup_expr='exact', label="Demolished", help_text="")
     all_demolition_checklist_components_completed = django_filters.BooleanFilter(lookup_expr='exact', label="All demolition checklist components completed", help_text="")
 
-    greening_form_submitted_date = django_filters.DateFromToRangeFilter(widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form submitted with claim', help_text='From - To')
+    greening_form_submitted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_submitted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form submitted with claim', help_text='From - To')
     greening_form_submitted_boolean = django_filters.BooleanFilter(method='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
 
 
