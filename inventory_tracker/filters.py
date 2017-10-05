@@ -76,7 +76,7 @@ class InventoryFilter(django_filters.FilterSet):
     environmental_report_received_range = django_filters.DateFromToRangeFilter(name='environmental_report_received', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Environmental report received', help_text='From - To')
     #environmental_report_complete = django_filters.BooleanFilter(lookup_expr='exact', label="Environmental report complete", help_text="")
     abatement_required = django_filters.BooleanFilter(lookup_expr='exact', label="Abatement required", help_text="")
-    abatement_complete_range = django_filters.DateFromToRangeFilter(name='abatement_complete_range', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Visual Inspection Certification received', help_text='From - To')
+    abatement_complete_range = django_filters.DateFromToRangeFilter(name='abatement_complete', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Visual Inspection Certification received', help_text='From - To')
     abatement_complete_boolean = django_filters.BooleanFilter(method='filter_abatement_complete_boolean', widget=django_filters.widgets.BooleanWidget(), label='Visual Inspection Certificate received', help_text='')
 
     bid_group = django_filters.CharFilter(lookup_expr='icontains', label='Bid group', help_text='Case insentive text search, partial matching supported')
