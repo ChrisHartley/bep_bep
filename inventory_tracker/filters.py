@@ -70,7 +70,7 @@ class InventoryFilter(django_filters.FilterSet):
     landmarks_cleared = django_filters.BooleanFilter(lookup_expr='exact', label="Landmarks Cleared", help_text="")
 
     preinspection_complete = django_filters.BooleanFilter(lookup_expr='exact', label="BLN Pre-bid survey complete", help_text="")
-    preinspection_date_range = django_filters.DateFromToRangeFilter(name='preinspection_date_range', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date pre-bid survey completed', help_text='From - To')
+    preinspection_date_range = django_filters.DateFromToRangeFilter(name='preinspection_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date pre-bid survey completed', help_text='From - To')
 
 
     environmental_report_received_range = django_filters.DateFromToRangeFilter(name='environmental_report_received', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Environmental report received', help_text='From - To')
