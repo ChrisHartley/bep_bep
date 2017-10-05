@@ -38,7 +38,7 @@ class InventoryFilter(django_filters.FilterSet):
     original_private_owner_name = django_filters.CharFilter(lookup_expr='icontains', label='Private owner name', help_text='')
     original_private_owner_contact = django_filters.CharFilter(lookup_expr='icontains', label='Private owner contact information', help_text='')
     #private_owner_purchase_agreement_signed = django_filters.BooleanFilter(label='Purchase agreement signed by private seller', help_text='')
-    private_owner_purchase_agreement_signed_date_range = django_filters.DateFromToRangeFilter(name="private_owner_purchase_agreement_signed_date", widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date purchase agreement to sell signed', help_text='From - To')
+    private_owner_purchase_agreement_signed_date_range = django_filters.DateFromToRangeFilter(name="private_owner_purchase_agreement_signed", widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date purchase agreement to sell signed', help_text='From - To')
     private_owner_purchase_agreement_signed_boolean = django_filters.BooleanFilter(method='filter_private_owner_purchase_agreement_signed_boolean', widget=django_filters.widgets.BooleanWidget(), label='Private owner purchase agreement to sell signed', help_text='')
 
     add_requested = django_filters.BooleanFilter(label='Property requested to be added to BEP', help_text='')
