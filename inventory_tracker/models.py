@@ -37,9 +37,9 @@ class Property(models.Model):
     parcel = models.CharField(max_length=7, unique=True)
     street_address = models.CharField(max_length=255, unique=True)
 
-    site_control = models.BooleanField(default=False, verbose_name="Renew Indianapolis site control")
+    site_control = models.BooleanField(default=False, verbose_name="RI site control")
     dmd_site_control = models.BooleanField(default=False, verbose_name="DMD site control")
-    mdc_resolution_boolean = models.BooleanField(default=False, verbose_name="MDC resolution passed")
+    mdc_resolution_boolean = models.BooleanField(default=False, verbose_name="MDC resolution")
     mdc_resolution_date = models.DateField(blank=True, null=True, verbose_name="Date of MDC resolution")
 
     originally_renew_owned = models.BooleanField(default=False)
