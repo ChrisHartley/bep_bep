@@ -65,6 +65,8 @@ class PropertyAdmin(admin.ModelAdmin):
                 (
                     'site_control',
                     'dmd_site_control',
+                    'mdc_resolution_boolean',
+                    'mdc_resolution_date',
                     #'interim_city_ownership',
                     'program_partner',
                     'originally_city_owned',

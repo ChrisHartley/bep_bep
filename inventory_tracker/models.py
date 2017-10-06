@@ -39,6 +39,8 @@ class Property(models.Model):
 
     site_control = models.BooleanField(default=False, verbose_name="Renew Indianapolis site control")
     dmd_site_control = models.BooleanField(default=False, verbose_name="DMD site control")
+    mdc_resolution_boolean = models.BooleanField(default=False, verbose_name="MDC resolution passed")
+    mdc_resolution_date = models.DateField(blank=True, null=True, verbose_name="Date of MDC resolution")
 
     originally_renew_owned = models.BooleanField(default=False)
     originally_city_owned = models.BooleanField(default=False)

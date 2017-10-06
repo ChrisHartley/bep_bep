@@ -28,6 +28,9 @@ class InventoryFilter(django_filters.FilterSet):
 
     site_control = django_filters.BooleanFilter(label='Site Control', help_text='Renew Indianapolis or Program Partner has site control')
     dmd_site_control = django_filters.BooleanFilter(label='DMD Site Control', help_text='DMD has site control')
+    mdc_resolution_boolean_filter = django_filters.BooleanFilter(label='MDC resolution passed')
+    mdc_resolution_date_range = django_filters.DateFromToRangeFilter(label='Date of MDC resolution', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), name='mdc_resolution_date')
+
 
     #interim_city_ownership = django_filters.BooleanFilter(label='Interim city ownership', help_text='')
     originally_renew_owned = django_filters.BooleanFilter(label='Renew Indianapolis owned', help_text='')
