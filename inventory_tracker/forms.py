@@ -56,7 +56,7 @@ class NewPropertySearchForm(forms.ModelForm):
                 'Site Control and Property Source',
                 Field('site_control'),
                 Field('dmd_site_control'),
-                Field('mdc_resolution_boolean_filter'),
+                Field('mdc_resolution_boolean'),
                 Field('mdc_resolution_date_range'),
                 Field('program_partner'),
                 Field('originally_renew_owned'),
