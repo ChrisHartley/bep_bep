@@ -80,9 +80,12 @@ class Property(models.Model):
 
     preinspection_complete = models.BooleanField(default=False)
     preinspection_date = models.DateField(blank=True, null=True)
+    preinspection_requested = models.BooleanField(default=False)
 
     #environmental_report_submitted = models.DateField(blank=True, null=True)
     environmental_report_received = models.DateField(blank=True, null=True)
+    environmental_report_requested = models.BooleanField(default=False)
+
     #environmental_report_complete = models.BooleanField(default=False)
     abatement_required = models.NullBooleanField(default=None)
     abatement_complete = models.DateField(blank=True, null=True, verbose_name='Visual Inspection Certification')

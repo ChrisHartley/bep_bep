@@ -115,6 +115,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('BLN Pre-inspection Report',
             { 'fields':
                 (
+                    'preinspection_requested',
                     'preinspection_complete',
                     'preinspection_date',
                 )
@@ -134,7 +135,7 @@ class PropertyAdmin(admin.ModelAdmin):
         ('Environmental Report', {
             'fields':
                 (
-        #            'environmental_report_complete',
+                    'environmental_report_requested',
                     'environmental_report_received',
                     'abatement_required',
                     'abatement_complete',

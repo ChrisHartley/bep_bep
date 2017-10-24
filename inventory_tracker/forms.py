@@ -101,11 +101,13 @@ class NewPropertySearchForm(forms.ModelForm):
             ),
             Fieldset(
                 'BLN Pre-bid Survey',
+                Field('preinspection_requested'),
                 Field('preinspection_complete'),
                 Field('preinspection_date_range'),
             ),
             Fieldset(
                 'Environmental Testing and Abatement',
+                Field('environmental_report_requested'),
                 Field('environmental_report_received_range'),
             #    Field('environmental_report_complete'),
                 Field('abatement_required'),
