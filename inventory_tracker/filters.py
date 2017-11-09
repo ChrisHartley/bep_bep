@@ -76,10 +76,14 @@ class InventoryFilter(django_filters.FilterSet):
     preinspection_date_range = django_filters.DateFromToRangeFilter(name='preinspection_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date pre-bid survey completed', help_text='From - To')
     preinspection_requested = django_filters.BooleanFilter(lookup_expr='exact', label="BLN Pre-bid survey requested", help_text="")
 
+
     environmental_report_received_range = django_filters.DateFromToRangeFilter(name='environmental_report_received', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Environmental report received', help_text='From - To')
     environmental_report_requested = django_filters.BooleanFilter(lookup_expr='exact', label="Environmental report requested", help_text="")
     #environmental_report_complete = django_filters.BooleanFilter(lookup_expr='exact', label="Environmental report complete", help_text="")
     abatement_required = django_filters.BooleanFilter(lookup_expr='exact', label="Abatement required", help_text="")
+    abatement_required_notice_to_proceed_given_range = django_filters.DateFromToRangeFilter(name='abatement_notice_to_proceed_given', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Notice to proceed with Abatement date', help_text='From - To')
+    abatement_required_notice_to_proceed_given_entered = django_filters.BooleanFilter(method='filter_abatement_notice_to_proceed_given_entered', widget=django_filters.widgets.BooleanWidget(), help_text='', label='Notice to Proceed with Abatement has been entered')
+
     abatement_complete_range = django_filters.DateFromToRangeFilter(name='abatement_complete', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Visual Inspection Certification received', help_text='From - To')
     abatement_complete_boolean = django_filters.BooleanFilter(method='filter_abatement_complete_boolean', widget=django_filters.widgets.BooleanWidget(), label='Visual Inspection Certificate received', help_text='')
 
@@ -99,6 +103,9 @@ class InventoryFilter(django_filters.FilterSet):
 
     greening_form_submitted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_submitted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form submitted with claim', help_text='From - To')
     greening_form_submitted_boolean = django_filters.BooleanFilter(method='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
+
+    greening_form_accepted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_accepted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form accepted by IHCDA', help_text='From - To')
+    greening_form_accepted_boolean = django_filters.BooleanFilter(method='filter_greening_form_accepted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form accepted', help_text='')
 
 
     notes = django_filters.CharFilter(lookup_expr='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
@@ -122,6 +129,18 @@ class InventoryFilter(django_filters.FilterSet):
             )
         return queryset
 
+    def filter_greening_form_accepted_date_entered(self, queryset, name, value):
+        if value == False:
+            return queryset.filter(
+                greening_form_accepted_date__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                greening_form_accepted_date__isnull=True
+            )
+        return queryset
+
+
     def filter_greening_form_submitted_date_entered(self, queryset, name, value):
         if value == False:
             return queryset.filter(
@@ -132,6 +151,19 @@ class InventoryFilter(django_filters.FilterSet):
                 greening_form_submitted_date__isnull=True
             )
         return queryset
+
+
+    def filter_abatement_notice_to_proceed_given_entered(self, queryset, name, value):
+        if value == False:
+            return queryset.filter(
+                abatement_notice_to_proceed_given__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                abatement_notice_to_proceed_given__isnull=True
+            )
+        return queryset
+
 
     def filter_notice_to_proceed_given_entered(self, queryset, name, value):
         if value == False:

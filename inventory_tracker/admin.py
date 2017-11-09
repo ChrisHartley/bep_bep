@@ -3,8 +3,7 @@ from django.forms import BaseInlineFormSet, Textarea
 from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
-
-
+from import_export.admin import ExportMixin
 
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
@@ -138,6 +137,7 @@ class PropertyAdmin(admin.ModelAdmin):
                     'environmental_report_requested',
                     'environmental_report_received',
                     'abatement_required',
+                    'abatement_notice_to_proceed_given',
                     'abatement_complete',
                     'environmental_cost',
                 )
@@ -163,6 +163,7 @@ class PropertyAdmin(admin.ModelAdmin):
                     'demolished_date',
                     'demolition_cost',
                     'greening_form_submitted_date',
+                    'greening_form_approved_date',
                     'ihcda_grant_pool',
                 )
             }
@@ -190,14 +191,14 @@ class PropertyAdmin(admin.ModelAdmin):
     def get_current_status(self, obj):
             return status.objects.filter(prop=obj).latest('timestamp')
 
-class PropertyOverviewAdmin(PropertyAdmin):
+class PropertyOverviewAdmin(PropertyAdmin, ExportMixin):
     model = PropertyProxy
     list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
 from read_only_admin.admin import ReadonlyAdmin
-class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
+class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin, ExportMixin):
     pass
 
 

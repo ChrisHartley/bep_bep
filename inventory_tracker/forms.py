@@ -111,6 +111,8 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('environmental_report_received_range'),
             #    Field('environmental_report_complete'),
                 Field('abatement_required'),
+                Field('abatement_required_notice_to_proceed_given_entered'),
+                Field('abatement_required_notice_to_proceed_given_range'),
                 Field('abatement_complete_range'),
                 Field('abatement_complete_boolean'),
             ),
@@ -139,6 +141,8 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('demolished_date_range'),
                 Field('greening_form_submitted_date_range'),
                 Field('greening_form_submitted_boolean'),
+                Field('greening_form_accepted_date_range'),
+                Field('greening_form_accepted_boolean'),
             ),
             Fieldset(
                 'Notes',

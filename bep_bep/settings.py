@@ -45,7 +45,9 @@ INSTALLED_APPS = (
     'django_filters',
     'debug_toolbar',
     'read_only_admin',
-)
+    'import_export',
+
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
