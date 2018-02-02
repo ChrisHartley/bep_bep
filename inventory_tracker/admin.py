@@ -193,7 +193,7 @@ class PropertyAdmin(admin.ModelAdmin):
 
 class PropertyOverviewAdmin(PropertyAdmin, ExportMixin):
     model = PropertyProxy
-    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
+    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'abatement_complete', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
