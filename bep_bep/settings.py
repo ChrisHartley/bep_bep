@@ -46,7 +46,6 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'read_only_admin',
     'import_export',
-
     )
 
 MIDDLEWARE_CLASSES = (

@@ -3,8 +3,8 @@ from django.forms import BaseInlineFormSet, Textarea
 from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
-from import_export.admin import ExportMixin
 
+from import_export.admin import ImportExportModelAdmin
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
     def get_queryset(self):
@@ -46,7 +46,7 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
 
 
 
-class PropertyAdmin(admin.ModelAdmin):
+class PropertyAdmin(ImportExportModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
     search_fields = ['parcel', 'street_address']
     #list_filter = ('site_control','quiet_title_status'),
@@ -191,14 +191,14 @@ class PropertyAdmin(admin.ModelAdmin):
     def get_current_status(self, obj):
             return status.objects.filter(prop=obj).latest('timestamp')
 
-class PropertyOverviewAdmin(PropertyAdmin, ExportMixin):
+class PropertyOverviewAdmin(PropertyAdmin):
     model = PropertyProxy
-    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'abatement_complete', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
+    list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'abatement_notice_to_proceed_given', 'abatement_complete', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
 from read_only_admin.admin import ReadonlyAdmin
-class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin, ExportMixin):
+class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
     pass
 
 
