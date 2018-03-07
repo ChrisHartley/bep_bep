@@ -143,6 +143,8 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('greening_form_submitted_boolean'),
                 Field('greening_form_accepted_date_range'),
                 Field('greening_form_accepted_boolean'),
+                Field('closeout_completed_date_range'),
+                Field('closeout_completed_date_boolean'),
             ),
             Fieldset(
                 'Notes',

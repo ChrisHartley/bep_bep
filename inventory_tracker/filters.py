@@ -104,6 +104,9 @@ class InventoryFilter(django_filters.FilterSet):
     greening_form_submitted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_submitted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form submitted with claim', help_text='From - To')
     greening_form_submitted_boolean = django_filters.BooleanFilter(method='filter_greening_form_submitted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form submitted', help_text='')
 
+    closeout_completed_date_range = django_filters.DateFromToRangeFilter(name='closeout_completed_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Closeout Form submitted', help_text='From - To')
+    closeout_completed_date_boolean = django_filters.BooleanFilter(method='filter_closeout_completed', widget=django_filters.widgets.BooleanWidget(), label='Closeout Form submitted', help_text='')
+
     greening_form_accepted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_accepted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form accepted by IHCDA', help_text='From - To')
     greening_form_accepted_boolean = django_filters.BooleanFilter(method='filter_greening_form_accepted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form accepted', help_text='')
 
@@ -208,6 +211,19 @@ class InventoryFilter(django_filters.FilterSet):
                 add_waiver_submitted__isnull=True
             )
         return queryset
+
+    def filter_closeout_completed(self, queryset, name, value):
+        if value == False:
+            return queryset.filter(
+                closeout_completed_date__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                closeout_completed_date__isnull=True
+            )
+        return queryset
+
+
 
     def filter_private_owner_purchase_agreement_signed_boolean(self, queryset, name, value):
         if value == False:

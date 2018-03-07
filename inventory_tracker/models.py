@@ -110,6 +110,8 @@ class Property(models.Model):
     environmental_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     demolition_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
+    closeout_completed_date = models.DateField(blank=True, null=True, verbose_name='Date closeout form submitted')
+
     COMPLETE_STATUS = 1
     ORDERED_STATUS = 2
     NOT_COMPLETE_STATUS = 3

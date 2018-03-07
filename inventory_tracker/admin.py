@@ -4,7 +4,7 @@ from .models import Property, claim, status, photo, Bidder, ProgramPartner, Prop
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
     def get_queryset(self):
@@ -46,7 +46,7 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
 
 
 
-class PropertyAdmin(ImportExportModelAdmin):
+class PropertyAdmin(ImportExportActionModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
     search_fields = ['parcel', 'street_address']
     #list_filter = ('site_control','quiet_title_status'),
@@ -165,6 +165,7 @@ class PropertyAdmin(ImportExportModelAdmin):
                     'greening_form_submitted_date',
                     'greening_form_approved_date',
                     'ihcda_grant_pool',
+                    'closeout_completed_date',
                 )
             }
         ),
