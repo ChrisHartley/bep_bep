@@ -56,6 +56,9 @@ class Property(models.Model):
     on_ihcda_list = models.BooleanField(default=False, verbose_name='On IHCDA list')
     on_ihcda_list_date = models.DateField(blank=True, null=True, verbose_name='IHCDA list')
 
+    AWARD_CHOICES = ((15000.00,15000.00),(25000.00,25000.00))
+    award_amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True, choices=AWARD_CHOICES)
+
     add_requested = models.BooleanField(default=False)
     add_requested_note = models.CharField(max_length=255, blank=True)
     add_requested_date = models.DateField(blank=True, null=True)
@@ -144,6 +147,13 @@ class Property(models.Model):
     def last_status(self):
         return status.objects.filter(prop_id=self.id).order_by('date').latest('date')
 
+    @property
+    def total_cost(self):
+        return (self.environmental_cost if self.environmental_cost else 0) + \
+            (self.acquisition_cost if self.acquisition_cost else 0) + \
+            (self.demolition_cost if self.demolition_cost else 0)
+
+
     class Meta:
         verbose_name_plural = "properties"
 
@@ -209,6 +219,12 @@ class PropertyProxy(Property):
         proxy = True
         verbose_name = 'Property (from summary view)'
         verbose_name_plural = 'Summary View of Properties'
+
+class PropertyCostProxy(Property):
+    class Meta:
+        proxy = True
+        verbose_name = 'Property'
+        verbose_name_plural = 'Cost View of Properties'
 
 class ReadOnlyPropertyProxy(PropertyProxy):
     class Meta:

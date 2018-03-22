@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy
+from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy, PropertyCostProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
@@ -90,6 +90,7 @@ class PropertyAdmin(ExportActionModelAdmin):
                 'scoring_matrix_complete',
                 'on_ihcda_list',
                 'on_ihcda_list_date',
+                'award_amount',
                 'add_requested',
                 'add_requested_note',
                 'add_requested_date',
@@ -203,6 +204,13 @@ class PropertyOverviewAdmin(PropertyAdmin):
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,)
 
+class PropertyCostOverviewAdmin(PropertyAdmin):
+    model = PropertyCostProxy
+    list_display = ('parcel','street_address', 'bid_group', 'acquisition_cost', 'environmental_cost', 'demolition_cost', 'total_cost', 'award_amount')
+    ordering = ['-bid_group']
+    list_filter = (PropertyBidGroupListFilter,)
+
+
 from read_only_admin.admin import ReadonlyAdmin
 class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
     pass
@@ -220,6 +228,7 @@ class CustomAdminSite(admin.AdminSite):
 admin_site = CustomAdminSite(name='bepbep_admin')
 admin_site.register(Property, PropertyAdmin)
 admin_site.register(PropertyProxy, PropertyOverviewAdmin)
+admin_site.register(PropertyCostProxy, PropertyCostOverviewAdmin)
 admin_site.register(ReadOnlyPropertyProxy, ReadOnlyPropertyOverviewAdmin)
 admin_site.register(claim)
 admin_site.register(status)
