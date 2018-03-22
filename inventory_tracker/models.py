@@ -54,12 +54,12 @@ class Property(models.Model):
 
 
     on_ihcda_list = models.BooleanField(default=False, verbose_name='On IHCDA list')
-    on_ihcda_list_date = models.DateField(blank=True, null=True, verbose_name='IHCDA list date')
+    on_ihcda_list_date = models.DateField(blank=True, null=True, verbose_name='IHCDA list')
 
     add_requested = models.BooleanField(default=False)
     add_requested_note = models.CharField(max_length=255, blank=True)
     add_requested_date = models.DateField(blank=True, null=True)
-    add_waiver_submitted = models.DateField(blank=True, null=True)
+    add_waiver_submitted = models.DateField(blank=True, null=True, verbose_name='Add Waiver')
 
     remove_requested = models.BooleanField(default=False)
     remove_requested_note = models.CharField(max_length=255, blank=True)
@@ -73,33 +73,33 @@ class Property(models.Model):
     scoring_matrix_complete = models.BooleanField(default=False)
 
     public_notice_complete = models.BooleanField(default=False)
-    public_notice_date = models.DateField(blank=True, null=True)
+    public_notice_date = models.DateField(blank=True, null=True, verbose_name='Public Notice')
 
     landmarks_response_date = models.DateField(blank=True, null=True)
     landmarks_cleared = models.NullBooleanField(default=None)
 
     preinspection_complete = models.BooleanField(default=False)
-    preinspection_date = models.DateField(blank=True, null=True)
+    preinspection_date = models.DateField(blank=True, null=True, verbose_name='Preinspection')
     preinspection_requested = models.BooleanField(default=False)
 
     #environmental_report_submitted = models.DateField(blank=True, null=True)
-    environmental_report_received = models.DateField(blank=True, null=True)
+    environmental_report_received = models.DateField(blank=True, null=True, verbose_name='Environmental Report')
     environmental_report_requested = models.BooleanField(default=False)
 
     #environmental_report_complete = models.BooleanField(default=False)
     abatement_required = models.NullBooleanField(default=None)
-    abatement_notice_to_proceed_given = models.DateField(blank=True, null=True, verbose_name='Date notice to proceed with abatement given')
-    abatement_complete = models.DateField(blank=True, null=True, verbose_name='Visual Inspection Certification')
+    abatement_notice_to_proceed_given = models.DateField(blank=True, null=True, verbose_name='Abatement NTP')
+    abatement_complete = models.DateField(blank=True, null=True, verbose_name='Visual Insp. Cert.')
 
     bid_date = models.DateField(blank=True, null=True)
     bid_group = models.CharField(max_length=25, blank=True)
 
     bidder_awarded = models.ForeignKey(Bidder, null=True, blank=True)
     contract_date = models.DateField(blank=True, null=True)
-    notice_to_proceed_given = models.DateField(blank=True, null=True, verbose_name='Date notice to proceed given')
+    notice_to_proceed_given = models.DateField(blank=True, null=True, verbose_name='Demolition NTP')
 
 
-    demolished_date = models.DateField(blank=True, null=True, verbose_name='Invoice received date')
+    demolished_date = models.DateField(blank=True, null=True, verbose_name='Invoice received')
     demolished = models.BooleanField(default=False)
     all_demolition_checklist_components_completed = models.BooleanField(default=False, verbose_name='All demolition checklist components completed')
 
@@ -107,6 +107,7 @@ class Property(models.Model):
     greening_form_approved_date = models.DateField(blank=True, null=True, verbose_name='Date Greening Form approved by IHCDA')
     notes = models.CharField(max_length=512, blank=True)
 
+    acquisition_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     environmental_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     demolition_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
