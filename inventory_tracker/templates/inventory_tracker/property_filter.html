@@ -26,11 +26,11 @@
   <div class="results">
     <table id="results_list" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead>
-        <tr><td>Parcel</td><td>Street Address</td><td>On IHCDA List</td><td>last_status</td></tr>
+        <tr><td>Parcel</td><td>Street Address</td><td>Bid Group</td><td>On IHCDA List</td><td>last_status</td></tr>
       </thead>
       <tbody>
   {% for obj in filter.qs %}
-      <tr><td><a target="_blank" href="{% url 'admin:inventory_tracker_property_change' obj.id %}">{{obj.parcel}}</a></td><td>{{obj.street_address}}</td><td>{{obj.on_ihcda_list|yesno:"Yes,No,Error"}}</td><td>{{obj.last_status}}</td></tr>
+      <tr><td><a target="_blank" href="{% url 'admin:inventory_tracker_property_change' obj.id %}">{{obj.parcel}}</a></td><td>{{obj.street_address}}</td><td>{{obj.bid_group}}</td><td>{{obj.on_ihcda_list|yesno:"Yes,No,Error"}}</td><td>{{obj.last_status}}</td></tr>
   {% endfor %}
 </tbody>
   </div>
