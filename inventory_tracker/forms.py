@@ -145,6 +145,8 @@ class NewPropertySearchForm(forms.ModelForm):
                 Field('greening_form_accepted_boolean'),
                 Field('closeout_completed_date_range'),
                 Field('closeout_completed_date_boolean'),
+                Field('mortgage_release_recorded_date_range'),
+                Field('mortgage_release_recorded_boolean'),
             ),
             Fieldset(
                 'Notes',

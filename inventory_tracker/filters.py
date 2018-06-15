@@ -110,6 +110,8 @@ class InventoryFilter(django_filters.FilterSet):
     greening_form_accepted_date_range = django_filters.DateFromToRangeFilter(name='greening_form_accepted_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Greening Form accepted by IHCDA', help_text='From - To')
     greening_form_accepted_boolean = django_filters.BooleanFilter(method='filter_greening_form_accepted_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Greening Form accepted', help_text='')
 
+    mortgage_release_recorded_date_range = django_filters.DateFromToRangeFilter(name='mortgage_release_recorded_date', widget=django_filters.widgets.RangeWidget(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}), label='Date Mortgage Release Recorded', help_text='From - To')
+    mortgage_release_recorded_boolean = django_filters.BooleanFilter(method='filter_mortgage_release_recorded_date_entered', widget=django_filters.widgets.BooleanWidget(), label='Mortgage Released', help_text='')
 
     notes = django_filters.CharFilter(lookup_expr='icontains', label='Notes', help_text='Case insentive text search, partial matching supported')
     planned_end_use = django_filters.CharFilter(lookup_expr='icontains', label='Planned end use', help_text='Case insentive text search, partial matching supported')
@@ -235,6 +237,19 @@ class InventoryFilter(django_filters.FilterSet):
                 private_owner_purchase_agreement_signed__isnull=True
             )
         return queryset
+
+    def filter_mortgage_release_recorded_date_entered(self, queryset, name, value):
+        if value == False:
+            return queryset.filter(
+                mortgage_release_recorded_date__isnull=True
+            )
+        if value == True:
+            return queryset.exclude(
+                mortgage_release_recorded_date__isnull=True
+            )
+        return queryset
+
+
 
 
 

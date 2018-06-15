@@ -4,7 +4,7 @@ from .models import Property, claim, status, photo, Bidder, ProgramPartner, Prop
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 
-from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ExportActionModelAdmin, ExportMixin
+from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ExportActionModelAdmin, ExportMixin, ExportActionModelAdmin
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
     def get_queryset(self):
@@ -27,10 +27,7 @@ class statusInline(admin.TabularInline):
 class PropertyBidGroupListFilter(admin.SimpleListFilter):
     title = 'Bid Group'
     parameter_name = 'bid_group'
-# make columns use abrviations to save space
-# NTP = notice to Proceed
-# invoice = inv
-    #abatement_notice_to_proceed_given.short_description = 'Abatement NTP'
+
 
     def lookups(self, request, model_admin):
         qs = model_admin.get_queryset(request)
@@ -172,6 +169,7 @@ class PropertyAdmin(ExportActionModelAdmin):
                     'greening_form_approved_date',
                     'ihcda_grant_pool',
                     'closeout_completed_date',
+                    'mortgage_release_recorded_date',
                 )
             }
         ),
