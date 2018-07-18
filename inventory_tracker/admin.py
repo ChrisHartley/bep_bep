@@ -45,12 +45,26 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
             return queryset.filter(bid_group__startswith=self.value())
         return queryset
 
+from datetime import date
+def mark_public_notice(modeladmin, request, queryset):
+    queryset.update(public_notice_complete=True)
+    queryset.update(public_notice_date=date.today())
+mark_public_notice.short_description = 'Mark public notice completed today'
 
+def mark_add_waiver_submitted(modeladmin, request, queryset):
+    queryset.update(add_waiver_submitted=date.today())
+mark_add_waiver_submitted.short_description = 'Mark add waiver submitted today'
+
+def mark_on_ihcda_list(modeladmin, request, queryset):
+    queryset.update(on_ihcda_list=True)
+    queryset.update(on_ihcda_list_date=date.today())
+mark_on_ihcda_list.short_description = 'Mark IHCDA added to list today'
 
 
 class PropertyAdmin(ExportActionModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
     search_fields = ['parcel', 'street_address']
+    actions = [mark_public_notice, mark_add_waiver_submitted, mark_on_ihcda_list]
     #list_filter = ('site_control','quiet_title_status'),
     fieldsets = (
         (None, {
@@ -200,6 +214,7 @@ class PropertyOverviewAdmin(PropertyAdmin):
     model = PropertyProxy
     list_display = ('parcel','street_address', 'bid_group', 'site_control', 'dmd_site_control', 'mdc_resolution_boolean', 'add_waiver_submitted', 'on_ihcda_list_date', 'public_notice_date', 'preinspection_date', 'environmental_report_received', 'abatement_required', 'abatement_notice_to_proceed_given', 'abatement_complete', 'notice_to_proceed_given', 'demolished_date', 'ihcda_grant_pool')
     ordering = ['-bid_group']
+
     list_filter = (PropertyBidGroupListFilter,)
 
 class PropertyCostOverviewAdmin(PropertyAdmin):
