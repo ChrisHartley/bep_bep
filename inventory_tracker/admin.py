@@ -3,8 +3,70 @@ from django.forms import BaseInlineFormSet, Textarea
 from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy, PropertyCostProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
-
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ExportActionModelAdmin, ExportMixin, ExportActionModelAdmin
+
+from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
+from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+
+
+def batch_update_view(model_admin, request, queryset, field_names):
+
+        # removes all other fields from the django admin form for a model
+    def remove_fields(form):
+        for field in list(form.base_fields.keys()):
+            if not field in field_names:
+                del form.base_fields[field]
+        return form
+
+        # the return value is the form class, not the form class instance
+    form_class = remove_fields(model_admin.get_form(request))
+
+    if request.method == 'POST':
+        form = form_class()
+
+        # the view is already called via POST from the django admin changelist
+        # here we have to distinguish between just showing the intermediary view via post
+        # and actually confirming the bulk edits
+        # for this there is a hidden field 'form-post' in the html template
+        if 'form-post' in request.POST:
+            form = form_class(request.POST)
+            if form.is_valid():
+                for item in queryset.all():
+                    changed_list = []
+                    for field_name in field_names:
+                        if request.POST.get('{}_use'.format(field_name,)) == 'on':
+                            setattr(item, field_name, form.cleaned_data[field_name])
+                            changed_list.append(field_name)
+                    if len(changed_list) > 0:
+                        l = LogEntry(
+                                    user=request.user,
+                                    content_type=ContentType.objects.get_for_model(model_admin.model, for_concrete_model=False),
+                                    object_id=item.pk,
+                                    object_repr=unicode(item),
+                                    action_flag=CHANGE,
+                                    change_message = 'Changed {}'.format(', '.join(changed_list),),
+                                    )
+                        l.save()
+                    item.save()
+                model_admin.message_user(request, "Bulk updated {} records".format(queryset.count()))
+                return HttpResponseRedirect(request.get_full_path())
+
+        return render(
+            request,
+            'admin/batch_editing_intermediary.html',
+            context={
+                'form': form,
+                'items': queryset,
+                'fieldnames': field_names,
+                'media': model_admin.media,
+            }
+        )
+
+
+
+
 # thanks https://yuji.wordpress.com/2011/03/18/django-ordering-admin-modeladmin-inlines/
 class OrderedFormSet(BaseInlineFormSet):
     def get_queryset(self):
@@ -45,26 +107,10 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
             return queryset.filter(bid_group__startswith=self.value())
         return queryset
 
-from datetime import date
-def mark_public_notice(modeladmin, request, queryset):
-    queryset.update(public_notice_complete=True)
-    queryset.update(public_notice_date=date.today())
-mark_public_notice.short_description = 'Mark public notice completed today'
-
-def mark_add_waiver_submitted(modeladmin, request, queryset):
-    queryset.update(add_waiver_submitted=date.today())
-mark_add_waiver_submitted.short_description = 'Mark add waiver submitted today'
-
-def mark_on_ihcda_list(modeladmin, request, queryset):
-    queryset.update(on_ihcda_list=True)
-    queryset.update(on_ihcda_list_date=date.today())
-mark_on_ihcda_list.short_description = 'Mark IHCDA added to list today'
-
-
 class PropertyAdmin(ExportActionModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
     search_fields = ['parcel', 'street_address']
-    actions = [mark_public_notice, mark_add_waiver_submitted, mark_on_ihcda_list]
+    actions = [custom_batch_editing__admin_action]
     #list_filter = ('site_control','quiet_title_status'),
     fieldsets = (
         (None, {
