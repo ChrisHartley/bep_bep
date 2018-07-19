@@ -3,12 +3,12 @@ from django.forms import BaseInlineFormSet, Textarea
 from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy, PropertyCostProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin, ExportActionModelAdmin, ExportMixin, ExportActionModelAdmin
 
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
 
 
 def batch_update_view(model_admin, request, queryset, field_names):
@@ -106,6 +106,19 @@ class PropertyBidGroupListFilter(admin.SimpleListFilter):
         if self.value():
             return queryset.filter(bid_group__startswith=self.value())
         return queryset
+
+
+
+def custom_batch_editing__admin_action(self, request, queryset):
+    return batch_update_view(
+        model_admin=self,
+        request=request,
+        queryset=queryset,
+        # this is the name of the field on the YourModel model
+        field_names=['public_notice_complete', 'public_notice_date', 'on_ihcda_list', 'on_ihcda_list_date', 'add_waiver_submitted'],
+    )
+custom_batch_editing__admin_action.short_description = "Batch Update"
+
 
 class PropertyAdmin(ExportActionModelAdmin):
     list_display = ('parcel','street_address','get_current_status','site_control','on_ihcda_list','bid_group','demolished')
@@ -246,6 +259,7 @@ class PropertyAdmin(ExportActionModelAdmin):
     inlines = [
         statusInline,
         ]
+
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         formfield = super(PropertyAdmin, self).formfield_for_dbfield(db_field, **kwargs)
