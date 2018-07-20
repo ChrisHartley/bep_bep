@@ -11,25 +11,32 @@ from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 from django.contrib.contenttypes.models import ContentType
 
 
-def batch_update_view(model_admin, request, queryset, field_names):
+def batch_update_view(model_admin, request, queryset, field_names=None, exclude_field_names=None):
 
         # removes all other fields from the django admin form for a model
-    def remove_fields(form):
+    def remove_fields(form, field_names):
         for field in list(form.base_fields.keys()):
             if not field in field_names:
                 del form.base_fields[field]
         return form
 
         # the return value is the form class, not the form class instance
-    form_class = remove_fields(model_admin.get_form(request))
-
+    f = model_admin.get_form(request)
+    # If no field names are given, do them all
+    if field_names is None:
+        field_names = f.base_fields.keys()
+    if exclude_field_names is not None:
+        # should do this with list comprehension
+        temp_names = []
+        for n in field_names:
+            if n not in exclude_field_names:
+                temp_names.append(n)
+        field_names = temp_names
+    form_class = remove_fields(f, field_names)
     if request.method == 'POST':
         form = form_class()
 
-        # the view is already called via POST from the django admin changelist
-        # here we have to distinguish between just showing the intermediary view via post
-        # and actually confirming the bulk edits
-        # for this there is a hidden field 'form-post' in the html template
+        # for this there is a hidden field 'form-post' in the html template the edit is confirmed
         if 'form-post' in request.POST:
             form = form_class(request.POST)
             if form.is_valid():
@@ -115,7 +122,8 @@ def custom_batch_editing__admin_action(self, request, queryset):
         request=request,
         queryset=queryset,
         # this is the name of the field on the YourModel model
-        field_names=['public_notice_complete', 'public_notice_date', 'on_ihcda_list', 'on_ihcda_list_date', 'add_waiver_submitted', 'site_control'],
+        #field_names=['public_notice_complete', 'public_notice_date', 'on_ihcda_list', 'on_ihcda_list_date', 'add_waiver_submitted', 'site_control'],
+        exclude_field_names=['parcel', 'street_address']
     )
 custom_batch_editing__admin_action.short_description = "Batch Update"
 
