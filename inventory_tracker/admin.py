@@ -115,7 +115,7 @@ def custom_batch_editing__admin_action(self, request, queryset):
         request=request,
         queryset=queryset,
         # this is the name of the field on the YourModel model
-        field_names=['public_notice_complete', 'public_notice_date', 'on_ihcda_list', 'on_ihcda_list_date', 'add_waiver_submitted'],
+        field_names=['public_notice_complete', 'public_notice_date', 'on_ihcda_list', 'on_ihcda_list_date', 'add_waiver_submitted', 'site_control'],
     )
 custom_batch_editing__admin_action.short_description = "Batch Update"
 
