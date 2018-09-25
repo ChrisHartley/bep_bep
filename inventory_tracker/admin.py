@@ -10,10 +10,9 @@ from import_export.admin import ImportExportModelAdmin, ImportExportActionModelA
 from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 from django.contrib.contenttypes.models import ContentType
 
-
 def batch_update_view(model_admin, request, queryset, field_names=None, exclude_field_names=None):
 
-        # removes all other fields from the django admin form for a model
+        # removes fields not included in field_names
     def remove_fields(form, field_names):
         for field in list(form.base_fields.keys()):
             if not field in field_names:
@@ -247,7 +246,7 @@ class PropertyAdmin(ExportActionModelAdmin):
                     'demolished_date',
                     'demolition_cost',
                     'greening_form_submitted_date',
-                    'greening_form_approved_date',
+                    'greening_form_accepted_date',
                     'ihcda_grant_pool',
                     'closeout_completed_date',
                     'mortgage_release_recorded_date',
