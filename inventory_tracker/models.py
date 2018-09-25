@@ -107,7 +107,7 @@ class Property(models.Model):
     all_demolition_checklist_components_completed = models.BooleanField(default=False, verbose_name='All demolition checklist components completed')
 
     greening_form_submitted_date = models.DateField(blank=True, null=True, verbose_name='Date Greening Form submitted with claim')
-    greening_form_approved_date = models.DateField(blank=True, null=True, verbose_name='Date Greening Form approved by IHCDA')
+    greening_form_accepted_date = models.DateField(blank=True, null=True, verbose_name='Date Greening Form approved by IHCDA')
     notes = models.CharField(max_length=512, blank=True)
 
     acquisition_cost = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
