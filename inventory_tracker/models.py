@@ -144,6 +144,23 @@ class Property(models.Model):
 
     ihcda_grant_pool = models.DecimalField(choices=IHCDA_GRANT_POOL_CHOICES, max_digits=2, decimal_places=1, default=None, blank=True, verbose_name='IHCDA Grant Pool', null=True)
 
+    TIER_1 = 18000.00
+    TIER_2 = 25000.00
+    IHCDA_TIER_CHOICES = (
+        (TIER_1, '$18k'),
+        (TIER_2, '$25k'),
+    )
+
+    ihcda_tier = models.DecimalField(choices=IHCDA_TIER_CHOICES, max_digits=7, decimal_places=2, default=0, blank=True)
+    total_claimed_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    maintenance_year_one = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    maintenance_year_two = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    maintenance_year_three = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    claimed_since_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    unused_maintenance_budget = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    sold = models.BooleanField(default=False)
+
+
     @property
     def last_status(self):
         return status.objects.filter(prop_id=self.id).order_by('date').latest('date')
@@ -169,7 +186,7 @@ class claim(models.Model):
     description = models.CharField(max_length=255, blank=False)
     amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     claim_confirmation_number = models.CharField(max_length=25, blank=True)
-    prop = models.ForeignKey(Property)
+    Properties = models.ManyToManyField(Property)
 
     def __unicode__(self):
         return '%s - %s' % (self.date, self.description)
@@ -226,6 +243,12 @@ class PropertyCostProxy(Property):
         proxy = True
         verbose_name = 'Property'
         verbose_name_plural = 'Cost View of Properties'
+
+class PropertyMaintenanceCostProxy(Property):
+    class Meta:
+        proxy = True
+        verbose_name = 'Property'
+        verbose_name_plural = 'Maintenance Cost View of Properties'
 
 class ReadOnlyPropertyProxy(PropertyProxy):
     class Meta:

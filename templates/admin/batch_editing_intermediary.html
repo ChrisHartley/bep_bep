@@ -24,12 +24,17 @@
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        <p>
+        <p><ul>
+      <div class='row'>    <div class='col-md-2'>
           {% for fieldname in fieldnames%}
-            Update {{fieldname}}? <input type=checkbox name={{fieldname}}_use></input></br>
+            <li>Update {{fieldname}}? <input type=checkbox name={{fieldname}}_use></input></li>
           {% endfor %}
-            {{ form | crispy }}
-
+        </div>
+        <div class='col-md-6'>
+            {{form.as_ul}}
+            {% comment %} {{ form | crispy }} {% endcomment %}
+</div>
+</div>
         </p>
         <ul>
             {% for item in items %}

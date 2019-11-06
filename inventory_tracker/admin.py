@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.forms import BaseInlineFormSet, Textarea
-from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy, PropertyCostProxy
+from .models import Property, claim, status, photo, Bidder, ProgramPartner, PropertyProxy, ReadOnlyPropertyProxy, PropertyCostProxy, PropertyMaintenanceCostProxy
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render
@@ -78,11 +78,11 @@ class OrderedFormSet(BaseInlineFormSet):
     def get_queryset(self):
         return super(OrderedFormSet, self).get_queryset().order_by('-date')
 
-class claimInline(admin.TabularInline):
-    model = claim
-    extra = 1
-    fields = ('claim_confirmation_number','description','amount','date','claim_paid','claim_paid_date')
-    formset = OrderedFormSet
+# class claimInline(admin.TabularInline):
+#     model = claim
+#     extra = 1
+#     fields = ('claim_confirmation_number','description','amount','date','claim_paid','claim_paid_date')
+#     formset = OrderedFormSet
 
 
 class statusInline(admin.TabularInline):
@@ -253,6 +253,20 @@ class PropertyAdmin(ExportActionModelAdmin):
                 )
             }
         ),
+        (
+        'Financials',{
+            'fields':
+                (
+                    'ihcda_tier',
+                    'total_claimed_2019',
+                    'maintenance_year_one',
+                    'maintenance_year_two',
+                    'maintenance_year_three',
+
+                )
+            }
+        ),
+
         ('Notes',{
             'fields':
                 (
@@ -296,6 +310,16 @@ class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
     pass
 
 
+class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
+    model = PropertyMaintenanceCostProxy
+    ordering = ['-bid_group']
+    list_filter = (PropertyBidGroupListFilter,'sold')
+    list_display = ('sold', 'parcel', 'street_address', 'bid_group', 'ihcda_tier', 'ihcda_grant_pool', 'greening_form_accepted_date', 'total_claimed_2019', 'maintenance_year_one', 'maintenance_year_two', 'unused_maintenance_budget')
+
+
+class ClaimAdmin(admin.ModelAdmin):
+    model = claim
+
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('prop','description','image_thumb','timestamp')
     fields = ( 'prop', ('image', 'image_thumb'), 'description','timestamp')
@@ -309,8 +333,10 @@ admin_site = CustomAdminSite(name='bepbep_admin')
 admin_site.register(Property, PropertyAdmin)
 admin_site.register(PropertyProxy, PropertyOverviewAdmin)
 admin_site.register(PropertyCostProxy, PropertyCostOverviewAdmin)
+admin_site.register(PropertyMaintenanceCostProxy, PropertyMaintenanceOverviewAdmin)
+
 admin_site.register(ReadOnlyPropertyProxy, ReadOnlyPropertyOverviewAdmin)
-admin_site.register(claim)
+admin_site.register(claim, ClaimAdmin)
 admin_site.register(status)
 admin_site.register(Bidder)
 admin_site.register(ProgramPartner)
