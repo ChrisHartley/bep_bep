@@ -153,9 +153,9 @@ class Property(models.Model):
 
     ihcda_tier = models.DecimalField(choices=IHCDA_TIER_CHOICES, max_digits=7, decimal_places=2, default=0, blank=True)
     total_claimed_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    maintenance_year_one = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    maintenance_year_two = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    maintenance_year_three = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    maintenance_year_one = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year one claimed')
+    maintenance_year_two = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year two claimed')
+    maintenance_year_three = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year three claimed')
     claimed_since_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
     unused_maintenance_budget = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
     sold = models.BooleanField(default=False)
