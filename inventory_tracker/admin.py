@@ -314,7 +314,20 @@ class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
     model = PropertyMaintenanceCostProxy
     ordering = ['-bid_group']
     list_filter = (PropertyBidGroupListFilter,'sold')
-    list_display = ('sold', 'parcel', 'street_address', 'bid_group', 'ihcda_tier', 'ihcda_grant_pool', 'greening_form_accepted_date', 'total_claimed_2019', 'maintenance_year_one', 'maintenance_year_two', 'unused_maintenance_budget')
+    list_display = (
+        'sold',
+        'parcel',
+        'street_address',
+        'bid_group',
+        'ihcda_tier',
+        'ihcda_grant_pool',
+        'greening_form_accepted_date',
+        'total_claimed_2019',
+        'maintenance_year_one',
+        'maintenance_year_two',
+        'maintenance_year_three', 
+        'unused_maintenance_budget'
+    )
 
 
 class ClaimAdmin(admin.ModelAdmin):
