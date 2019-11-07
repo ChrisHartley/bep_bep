@@ -309,6 +309,7 @@ from read_only_admin.admin import ReadonlyAdmin
 class ReadOnlyPropertyOverviewAdmin(PropertyOverviewAdmin, ReadonlyAdmin):
     pass
 
+from django.db.models import Q
 
 class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
     model = PropertyMaintenanceCostProxy
@@ -329,6 +330,16 @@ class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
         'unused_maintenance_budget'
     )
 
+    def get_queryset(self, request):
+        qs = super(PropertyMaintenanceOverviewAdmin, self).get_queryset(request)
+        return qs.filter(
+            Q(bid_group__startswith='9') |
+            Q(bid_group__startswith='10') |
+            Q(bid_group__startswith='11') |
+            Q(bid_group__startswith='12') |
+            Q(bid_group__startswith='13')
+        )
+        #return qs
 
 class ClaimAdmin(admin.ModelAdmin):
     model = claim
