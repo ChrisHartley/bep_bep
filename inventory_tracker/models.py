@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from decimal import Decimal
 
 class ProgramPartner(models.Model):
     name = models.CharField(max_length=255, blank=False)
@@ -144,20 +145,22 @@ class Property(models.Model):
 
     ihcda_grant_pool = models.DecimalField(choices=IHCDA_GRANT_POOL_CHOICES, max_digits=2, decimal_places=1, default=None, blank=True, verbose_name='IHCDA Grant Pool', null=True)
 
-    TIER_1 = 18000.00
-    TIER_2 = 25000.00
+    TIER_1 = Decimal(18000.00)
+    TIER_2 = Decimal(25000.00)
+    TIER_0 = Decimal(0)
     IHCDA_TIER_CHOICES = (
         (TIER_1, '$18k'),
         (TIER_2, '$25k'),
+        (TIER_0, 'Unassigned'),
     )
 
-    ihcda_tier = models.DecimalField(choices=IHCDA_TIER_CHOICES, max_digits=7, decimal_places=2, default=0, blank=True)
-    total_claimed_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    maintenance_year_one = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year one claimed')
-    maintenance_year_two = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year two claimed')
-    maintenance_year_three = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year three claimed')
-    claimed_since_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
-    unused_maintenance_budget = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True)
+    ihcda_tier = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
+    total_claimed_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
+    maintenance_year_one = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True,null=True, verbose_name='Year one claimed')
+    maintenance_year_two = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year two claimed', null=True)
+    maintenance_year_three = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, verbose_name='Year three claimed', null=True)
+    claimed_since_2019 = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
+    unused_maintenance_budget = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)
     sold = models.BooleanField(default=False)
 
 

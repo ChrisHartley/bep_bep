@@ -325,7 +325,7 @@ class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
         'total_claimed_2019',
         'maintenance_year_one',
         'maintenance_year_two',
-        'maintenance_year_three', 
+        'maintenance_year_three',
         'unused_maintenance_budget'
     )
 
