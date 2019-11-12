@@ -330,6 +330,7 @@ class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
         'unused_maintenance_budget'
     )
 
+    list_display_links = ('parcel',)
     def get_queryset(self, request):
         qs = super(PropertyMaintenanceOverviewAdmin, self).get_queryset(request)
         return qs.filter(
