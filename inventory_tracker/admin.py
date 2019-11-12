@@ -338,7 +338,9 @@ class PropertyMaintenanceOverviewAdmin(PropertyAdmin):
             Q(bid_group__startswith='10') |
             Q(bid_group__startswith='11') |
             Q(bid_group__startswith='12') |
-            Q(bid_group__startswith='13')
+            Q(bid_group__startswith='13') |
+            Q(bid_group__startswith='14')
+
         )
         #return qs
 
