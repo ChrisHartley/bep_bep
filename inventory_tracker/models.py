@@ -118,6 +118,8 @@ class Property(models.Model):
     closeout_completed_date = models.DateField(blank=True, null=True, verbose_name='Date closeout form submitted')
     mortgage_release_recorded_date = models.DateField(blank=True, null=True, verbose_name='Date mortgage release recorded')
 
+    mortgage_expiration_date = models.DateField(blank=True, null=True, verbose_name='Date mortgage expires')
+
     COMPLETE_STATUS = 1
     ORDERED_STATUS = 2
     NOT_COMPLETE_STATUS = 3

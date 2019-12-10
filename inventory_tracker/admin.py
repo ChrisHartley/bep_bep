@@ -250,6 +250,7 @@ class PropertyAdmin(ExportActionModelAdmin):
                     'ihcda_grant_pool',
                     'closeout_completed_date',
                     'mortgage_release_recorded_date',
+                    'mortgage_expiration_date',
                 )
             }
         ),
